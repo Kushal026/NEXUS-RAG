@@ -120,9 +120,10 @@ export const SelfCorrectingWorkbench: React.FC<SelfCorrectingWorkbenchProps> = (
                 <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                   Self-Correcting Retrieval Engine
                   <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    Phase 7 Active
+                    Self-Correction Loop
                   </span>
                 </h2>
+
                 <p className="text-xs text-slate-400">
                   Iterative retrieval with quality evaluation, targeted query rewriting, cross-iteration evidence accumulation, and claim verification.
                 </p>

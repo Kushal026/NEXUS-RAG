@@ -42,8 +42,9 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
               <ShieldCheck className="w-3.5 h-3.5" />
-              NEXUS-RAG • Neural Evidence Intelligence Platform
+              NEXUS • Neural Evidence Intelligence Platform
             </div>
+
             <h2 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
               Evidence-First Retrieval & Explainable Neural Synthesis
             </h2>
@@ -114,9 +115,9 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
           </div>
           <div className="flex items-baseline justify-between">
             <span className="text-sm font-bold text-slate-100 font-mono truncate max-w-[150px]">
-              {status?.embedding_provider || "all-MiniLM-L6-v2"}
+              {status?.embedding_model || status?.embedding_provider || "all-MiniLM-L6-v2"}
             </span>
-            <span className="text-[11px] text-emerald-400 font-semibold">384-dim</span>
+            <span className="text-[11px] text-emerald-400 font-semibold">{status?.embedding_dimension || 384}-dim</span>
           </div>
           <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
             <div className="h-full bg-purple-500 rounded-full w-full" />
@@ -131,12 +132,17 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             </div>
           </div>
           <div className="flex items-baseline justify-between">
-            <span className="text-sm font-bold text-slate-100 font-mono">Cross-Encoder</span>
-            <span className="text-[11px] text-indigo-400 font-semibold">ms-marco</span>
+            <span className="text-sm font-bold text-slate-100 font-mono truncate max-w-[140px]">
+              {status?.reranker_provider ? status.reranker_provider.replace(/_/g, " ") : "Cross-Encoder"}
+            </span>
+            <span className="text-[11px] text-indigo-400 font-semibold truncate max-w-[90px]">
+              {status?.reranker_model ? status.reranker_model.split("/").pop() : "ms-marco"}
+            </span>
           </div>
           <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
             <div className="h-full bg-amber-400 rounded-full w-full" />
           </div>
+
         </div>
       </div>
 

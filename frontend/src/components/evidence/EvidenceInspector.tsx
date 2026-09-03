@@ -158,9 +158,10 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({ documents 
                 <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                   Evidence Intelligence Engine
                   <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    Phase 6 Active
+                    Evidence Intelligence Engine
                   </span>
                 </h2>
+
                 <p className="text-xs text-slate-400">
                   Zero-hallucination evidence analysis: Contradiction detection, multi-factor source reliability, and evidence coverage validation.
                 </p>

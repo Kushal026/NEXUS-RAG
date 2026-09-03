@@ -120,8 +120,9 @@ export const MultimodalEvidenceView: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wide">
-                Phase 8 Feature
+                Multimodal Engine
               </span>
+
               <span className="text-xs text-slate-400 flex items-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                 Zero Costly LLM Vision Calls

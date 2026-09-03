@@ -24,11 +24,9 @@ export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab 
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold tracking-tight text-white">NEXUS-RAG</h1>
-            <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20">
-              Phase 9 Research Agent
-            </span>
+            <h1 className="text-xl font-bold tracking-tight text-white">NEXUS</h1>
           </div>
+
           <p className="text-xs text-slate-400">Neural Evidence & eXplainability Unified Search</p>
         </div>
       </div>
@@ -134,10 +132,8 @@ export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab 
         >
           <Zap className="w-4 h-4 text-rose-400" />
           Research Agent
-          <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-rose-500/20 text-[9px] text-rose-300 font-semibold uppercase">
-            Phase 9
-          </span>
         </button>
+
 
         <button
           onClick={() => setActiveTab("evaluation")}

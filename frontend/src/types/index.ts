@@ -204,11 +204,15 @@ export interface SystemStatus {
   environment: string;
   llm_provider: string;
   embedding_provider: string;
+  embedding_model?: string;
+  embedding_dimension?: number;
   reranker_provider: string;
+  reranker_model?: string;
   total_documents: number;
   total_chunks: number;
   status: string;
 }
+
 
 export interface QueryConfig {
   use_dense: boolean;
@@ -729,9 +733,26 @@ export interface ResearchAgentReportResult {
   model_used: string;
 }
 
+// ============================================================================
+// AUTHENTICATION & MULTI-TENANCY TYPES
+// ============================================================================
 
+export interface UserAccount {
+  user_id: string;
+  username: string;
+  name?: string;
+  email: string;
+  tenant_id: string;
+  role: "admin" | "researcher" | "viewer";
+  is_active: boolean;
+  created_at?: string;
+}
 
-
+export interface AuthTokenResponse {
+  access_token: string;
+  token_type: string;
+  user: UserAccount;
+}
 
 
 

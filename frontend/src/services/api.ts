@@ -12,18 +12,134 @@ import {
   TemporalDiffResult,
   TemporalConflictResult,
   TemporalFilter,
+  UserAccount,
+  AuthTokenResponse,
 } from "../types";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
 
+let currentAuthToken: string | null = null;
+
 export const api = {
+  setAuthToken(token: string | null) {
+    currentAuthToken = token;
+    if (typeof window !== "undefined") {
+      if (token) {
+        localStorage.setItem("nexus_auth_token", token);
+      } else {
+        localStorage.removeItem("nexus_auth_token");
+      }
+    }
+  },
+
+  getAuthToken(): string | null {
+    if (!currentAuthToken && typeof window !== "undefined") {
+      currentAuthToken = localStorage.getItem("nexus_auth_token");
+    }
+    return currentAuthToken;
+  },
+
+  getHeaders(customHeaders: Record<string, string> = {}): HeadersInit {
+    const token = this.getAuthToken();
+    const headers: Record<string, string> = {
+      ...customHeaders,
+    };
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+    return headers;
+  },
+
+  // ==========================================================================
+  // AUTHENTICATION API METHODS
+  // ==========================================================================
+
+  async login(usernameOrEmail: string, password: string): Promise<AuthTokenResponse> {
+    const res = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: usernameOrEmail, password }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: "Login failed" }));
+      throw new Error(err.detail || "Invalid credentials");
+    }
+    const data: AuthTokenResponse = await res.json();
+    this.setAuthToken(data.access_token);
+    return data;
+  },
+
+  async register(username: string, email: string, password: string, name?: string): Promise<AuthTokenResponse> {
+    const res = await fetch(`${API_BASE_URL}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password, name }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: "Registration failed" }));
+      throw new Error(err.detail || "Registration failed");
+    }
+    const data: AuthTokenResponse = await res.json();
+    this.setAuthToken(data.access_token);
+    return data;
+  },
+
+  async getMe(): Promise<UserAccount> {
+    const token = this.getAuthToken();
+    const headers = this.getHeaders();
+    const res = await fetch(`${API_BASE_URL}/auth/me?token=${token || ""}`, {
+      headers,
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Unauthorized");
+    return res.json();
+  },
+
+  async forgotPassword(email: string): Promise<{ status: string; message: string; reset_token?: string }> {
+    const res = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    if (!res.ok) throw new Error("Failed to process password recovery request");
+    return res.json();
+  },
+
+  async resetPassword(token: string, newPassword: string): Promise<{ status: string; message: string }> {
+    const res = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, new_password: newPassword }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: "Reset failed" }));
+      throw new Error(err.detail || "Password reset failed");
+    }
+    return res.json();
+  },
+
+  async logout(): Promise<void> {
+    try {
+      await fetch(`${API_BASE_URL}/auth/logout`, { method: "POST" });
+    } catch {}
+    this.setAuthToken(null);
+  },
+
+  // ==========================================================================
+  // SYSTEM & DOCUMENTS
+  // ==========================================================================
+
   async getSystemStatus(): Promise<SystemStatus> {
-    const res = await fetch(`${API_BASE_URL}/system/status`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE_URL}/system/status`, {
+      headers: this.getHeaders(),
+      cache: "no-store",
+    });
     if (!res.ok) throw new Error(`Status check failed: ${res.statusText}`);
     return res.json();
   },
 
   async listDocuments(): Promise<DocumentInfo[]> {
+
     const res = await fetch(`${API_BASE_URL}/documents`, { cache: "no-store" });
     if (!res.ok) throw new Error(`Failed to list documents: ${res.statusText}`);
     return res.json();

@@ -301,9 +301,10 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({ document
                 <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                   Knowledge Graph Intelligence
                   <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                    Phase 5 Active
+                    Knowledge Graph Engine
                   </span>
                 </h2>
+
                 <p className="text-xs text-slate-400">
                   Moving beyond chunk-level retrieval with explicit entity resolution, typed directional relationships & strict document provenance.
                 </p>

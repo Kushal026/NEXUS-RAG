@@ -65,8 +65,9 @@ export const EvaluationDashboard: React.FC = () => {
               Information Retrieval (IR) & Query Reasoning Benchmark Suite
             </h2>
             <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              Phase 3 Intelligence
+              IR Benchmark Suite
             </span>
+
           </div>
           <p className="text-xs text-slate-400 mt-1 max-w-3xl">
             Evaluate quantitative retrieval quality (Recall@K, MRR, NDCG) and multi-hop reasoning performance (atomic query decomposition, intermediate fact accumulation, and query rewriting).
