@@ -23,10 +23,22 @@ import { History } from "lucide-react";
 
 interface DocumentVaultProps {
   documents: DocumentInfo[];
-  onRefresh: () => void;
+  onRefresh?: () => void;
+  onSelectDocument?: (doc: DocumentInfo) => void;
+  onUploadSuccess?: () => void;
 }
 
-export const DocumentVault: React.FC<DocumentVaultProps> = ({ documents, onRefresh }) => {
+export const DocumentVault: React.FC<DocumentVaultProps> = ({
+  documents,
+  onRefresh,
+  onSelectDocument,
+  onUploadSuccess
+}) => {
+  const triggerRefresh = () => {
+    if (onRefresh) onRefresh();
+    if (onUploadSuccess) onUploadSuccess();
+  };
+
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [selectedDoc, setSelectedDoc] = useState<DocumentInfo | null>(null);
@@ -45,7 +57,7 @@ export const DocumentVault: React.FC<DocumentVaultProps> = ({ documents, onRefre
       for (let i = 0; i < files.length; i++) {
         await api.uploadDocument(files[i]);
       }
-      onRefresh();
+      triggerRefresh();
     } catch (err: any) {
       setUploadError(err.message || "Failed to upload file");
     } finally {
@@ -55,6 +67,10 @@ export const DocumentVault: React.FC<DocumentVaultProps> = ({ documents, onRefre
   };
 
   const handleViewChunks = async (doc: DocumentInfo) => {
+    if (onSelectDocument) {
+      onSelectDocument(doc);
+      return;
+    }
     setSelectedDoc(doc);
     setLoadingChunks(true);
     try {
@@ -76,11 +92,12 @@ export const DocumentVault: React.FC<DocumentVaultProps> = ({ documents, onRefre
         setSelectedDoc(null);
         setChunks([]);
       }
-      onRefresh();
+      triggerRefresh();
     } catch (err: any) {
       alert(`Delete failed: ${err.message}`);
     }
   };
+
 
   const getFileIcon = (fileType: string) => {
     switch (fileType.toLowerCase()) {

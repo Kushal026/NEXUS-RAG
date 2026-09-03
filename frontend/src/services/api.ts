@@ -258,5 +258,153 @@ export const api = {
     if (!res.ok) throw new Error(`Path finding failed: ${res.statusText}`);
     return res.json();
   },
+
+  // ==========================================================================
+  // PHASE 6 — EVIDENCE INTELLIGENCE API METHODS
+  // ==========================================================================
+
+  async analyzeEvidence(query: string, config?: any): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/evidence/analyze`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query, ...(config || {}) }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || "Evidence analysis failed");
+    }
+    return res.json();
+  },
+
+  async evaluateNLI(premise: string, hypothesis: string): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/evidence/nli`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ premise, hypothesis }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || "NLI evaluation failed");
+    }
+    return res.json();
+  },
+
+  async evaluateSourceQuality(filename: string, content: string = ""): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/evidence/source-quality`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ filename, content }),
+    });
+    if (!res.ok) throw new Error(`Source quality evaluation failed: ${res.statusText}`);
+    return res.json();
+  },
+
+  // ==========================================================================
+  // PHASE 7 — SELF-CORRECTING RETRIEVAL ENGINE API METHODS
+  // ==========================================================================
+
+  async executeSelfCorrection(query: string, config?: any): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/self-correction/query`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query, ...(config || {}) }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || "Self-correcting query failed");
+    }
+    return res.json();
+  },
+
+  async evaluateRetrievalQuality(query: string, chunkTexts: string[]): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/self-correction/evaluate-quality`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query, chunk_texts: chunkTexts }),
+    });
+    if (!res.ok) throw new Error(`Quality evaluation failed: ${res.statusText}`);
+    return res.json();
+  },
+
+  async verifyAnswerClaims(rawAnswer: string, evidenceTexts: string[]): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/self-correction/verify-answer`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ raw_answer: rawAnswer, evidence_texts: evidenceTexts }),
+    });
+    if (!res.ok) throw new Error(`Answer verification failed: ${res.statusText}`);
+    return res.json();
+  },
+
+  // ==========================================================================
+  // PHASE 8 — MULTIMODAL EVIDENCE ENGINE API METHODS
+  // ==========================================================================
+
+  async queryMultimodalEvidence(query: string, requestedModality?: string, topK: number = 8): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/multimodal/query`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query, requested_modality: requestedModality || "all", top_k: topK }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || "Multimodal query failed");
+    }
+    return res.json();
+  },
+
+  async parseMultimodalText(text: string, filename: string = "document.md"): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/multimodal/parse-text`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, filename }),
+    });
+    if (!res.ok) throw new Error(`Multimodal parsing failed: ${res.statusText}`);
+    return res.json();
+  },
+
+  async getDocumentStructure(documentId: string): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/multimodal/document/${documentId}/structure`);
+    if (!res.ok) throw new Error(`Failed to fetch document structure: ${res.statusText}`);
+    return res.json();
+  },
+
+  // ==========================================================================
+  // PHASE 9 — NEXUS RESEARCH AGENT API METHODS
+  // ==========================================================================
+
+  async executeResearchAgent(params: {
+    goal: string;
+    max_iterations?: number;
+    max_searches?: number;
+    max_time_seconds?: number;
+    enable_graph_traversal?: boolean;
+    enable_contradiction_detection?: boolean;
+  }): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/agent/research`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || "Research Agent execution failed");
+    }
+    return res.json();
+  },
+
+  async generateResearchPlan(goal: string): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/agent/plan`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ goal }),
+    });
+    if (!res.ok) throw new Error(`Plan generation failed: ${res.statusText}`);
+    return res.json();
+  },
 };
+
+
+
+
 

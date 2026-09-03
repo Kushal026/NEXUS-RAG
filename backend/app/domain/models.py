@@ -417,3 +417,321 @@ class HybridGraphRAGResult(BaseModel):
     execution_time_ms: float = 0.0
     model_used: str = "hybrid_graph_rag_v1"
 
+
+# ============================================================================
+# PHASE 6 — EVIDENCE INTELLIGENCE ENGINE MODELS
+# ============================================================================
+
+class NLIClassificationType(str, Enum):
+    ENTAILMENT = "entailment"
+    CONTRADICTION = "contradiction"
+    PARTIAL_CONTRADICTION = "partial_contradiction"
+    DIFFERENT_CONDITIONS = "different_conditions"
+    TEMPORAL_DIFFERENCE = "temporal_difference"
+    NEUTRAL = "neutral"
+
+
+class NLIResult(BaseModel):
+    premise: str
+    hypothesis: str
+    verdict: NLIClassificationType = NLIClassificationType.NEUTRAL
+    confidence: float = 0.0
+    explanation: str
+    condition_a: Optional[str] = None
+    condition_b: Optional[str] = None
+    metric_diff: Optional[str] = None
+
+
+class SourceReliabilityScore(BaseModel):
+    document_filename: str
+    overall_score: float = 0.5
+    source_type_score: float = 0.5
+    authority_score: float = 0.5
+    recency_score: float = 0.5
+    corroboration_score: float = 0.5
+    citation_quality_score: float = 0.5
+    document_type: str = "unknown"
+    explanation: str
+
+
+class GroupedClaimEvidence(BaseModel):
+    claim_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    statement: str
+    supporting_citations: List[EvidenceCitation] = Field(default_factory=list)
+    contradicting_citations: List[EvidenceCitation] = Field(default_factory=list)
+    conflict_explanation: Optional[str] = None
+    has_conflict: bool = False
+    verification_status: str = "supported"  # supported, partially_supported, contradicted, insufficient_evidence
+    confidence_score: float = 1.0
+    source_qualities: Dict[str, SourceReliabilityScore] = Field(default_factory=dict)
+
+
+class CompositeScoreBreakdown(BaseModel):
+    relevance_component: float = 0.0
+    source_reliability_component: float = 0.0
+    temporal_relevance_component: float = 0.0
+    agreement_component: float = 0.0
+    coverage_component: float = 0.0
+    formula_weights: Dict[str, float] = Field(default_factory=dict)
+    final_composite_score: float = 0.0
+
+
+class EvidenceIntelligenceReport(BaseModel):
+    query: str
+    synthesis_markdown: str
+    grouped_claims: List[GroupedClaimEvidence] = Field(default_factory=list)
+    evidence_coverage_percentage: float = 0.0
+    supported_claims_count: int = 0
+    contradicted_claims_count: int = 0
+    unsupported_claims_count: int = 0
+    is_insufficient_evidence: bool = False
+    insufficient_evidence_reason: Optional[str] = None
+    composite_evidence_score: float = 0.0
+    score_breakdown: Optional[CompositeScoreBreakdown] = None
+    source_reliability_matrix: Dict[str, SourceReliabilityScore] = Field(default_factory=dict)
+    retrieved_chunks: List[ScoredChunk] = Field(default_factory=list)
+    execution_time_ms: float = 0.0
+    model_used: str = "evidence_intelligence_v1"
+
+
+# ============================================================================
+# PHASE 7 — SELF-CORRECTING RETRIEVAL ENGINE MODELS
+# ============================================================================
+
+class SelfCorrectionDecision(str, Enum):
+    GENERATE = "generate"
+    RETRY_MISSING_EVIDENCE = "retry_missing_evidence"
+    RETRY_RESOLVE_CONTRADICTION = "retry_resolve_contradiction"
+    ABSTAIN = "abstain"
+
+
+class RetrievalQualityScore(BaseModel):
+    overall_quality: float = 0.0
+    relevance_score: float = 0.0
+    coverage_score: float = 0.0
+    source_quality_score: float = 0.0
+    redundancy_score: float = 0.0
+    has_contradictions: bool = False
+    missing_gaps: List[str] = Field(default_factory=list)
+    recommended_decision: SelfCorrectionDecision = SelfCorrectionDecision.GENERATE
+    evaluation_reason: str = ""
+
+
+class SelfCorrectionIteration(BaseModel):
+    iteration_number: int = 1
+    search_query: str
+    rewrite_strategy: Optional[str] = None
+    retrieved_chunks_count: int = 0
+    accumulated_chunks_count: int = 0
+    quality_evaluation: Optional[RetrievalQualityScore] = None
+    decision_taken: str = "generate"
+    notes: Optional[str] = None
+
+
+class VerifiedClaimItem(BaseModel):
+    claim_text: str
+    status: str = "supported"  # supported, unsupported, contradicted
+    confidence: float = 1.0
+    supporting_citations: List[EvidenceCitation] = Field(default_factory=list)
+    verification_note: Optional[str] = None
+
+
+class AnswerVerificationResult(BaseModel):
+    raw_answer: str
+    final_answer: str
+    extracted_claims: List[str] = Field(default_factory=list)
+    verified_claim_items: List[VerifiedClaimItem] = Field(default_factory=list)
+    supported_claims_count: int = 0
+    unsupported_claims_count: int = 0
+    contradicted_claims_count: int = 0
+    unsupported_claim_rate: float = 0.0
+    was_regenerated: bool = False
+    regeneration_reason: Optional[str] = None
+
+
+class SelfCorrectingRAGResult(BaseModel):
+    query: str
+    final_answer_markdown: str
+    status: str = "first_pass_success"  # first_pass_success, recovered, abstained
+    total_iterations: int = 1
+    max_iterations_allowed: int = 3
+    iterations_trace: List[SelfCorrectionIteration] = Field(default_factory=list)
+    accumulated_chunks: List[ScoredChunk] = Field(default_factory=list)
+    verification: Optional[AnswerVerificationResult] = None
+    final_evidence_coverage: float = 0.0
+    is_abstained: bool = False
+    abstention_reason: Optional[str] = None
+    execution_time_ms: float = 0.0
+    metrics: Dict[str, Any] = Field(default_factory=dict)
+    model_used: str = "self_correcting_rag_v1"
+
+
+# ============================================================================
+# PHASE 8 — MULTIMODAL EVIDENCE ENGINE MODELS
+# ============================================================================
+
+class ModalityType(str, Enum):
+    TEXT = "text"
+    TABLE = "table"
+    FIGURE = "figure"
+    CHART = "chart"
+    IMAGE = "image"
+    CODE = "code"
+
+
+class TableData(BaseModel):
+    table_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    headers: List[str] = Field(default_factory=list)
+    rows: List[List[str]] = Field(default_factory=list)
+    num_rows: int = 0
+    num_cols: int = 0
+    caption: Optional[str] = None
+    source_page: Optional[int] = None
+    markdown_repr: str = ""
+
+
+class ChartFigureData(BaseModel):
+    figure_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: Optional[str] = None
+    caption: Optional[str] = None
+    figure_type: str = "chart"  # chart, diagram, architecture, plot, scan
+    x_axis_label: Optional[str] = None
+    y_axis_label: Optional[str] = None
+    visible_values: List[str] = Field(default_factory=list)
+    explanatory_text: Optional[str] = None
+    source_page: Optional[int] = None
+    image_url: Optional[str] = None
+
+
+class ImageData(BaseModel):
+    image_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    image_type: str = "scan"  # scan, photo, diagram, screenshot
+    ocr_text: Optional[str] = None
+    caption: Optional[str] = None
+    source_page: Optional[int] = None
+    image_format: str = "png"
+
+
+class CodeBlockData(BaseModel):
+    code_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    language: str = "python"
+    code_content: str
+    source_file: Optional[str] = None
+    source_page: Optional[int] = None
+
+
+class MultimodalDocumentRepresentation(BaseModel):
+    document_id: str
+    filename: str
+    text_chunks: List[DocumentChunk] = Field(default_factory=list)
+    tables: List[TableData] = Field(default_factory=list)
+    figures: List[ChartFigureData] = Field(default_factory=list)
+    images: List[ImageData] = Field(default_factory=list)
+    code_blocks: List[CodeBlockData] = Field(default_factory=list)
+    metadata: DocumentMetadata
+    references: List[str] = Field(default_factory=list)
+
+
+class MultimodalEvidenceItem(BaseModel):
+    evidence_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    modality: ModalityType = ModalityType.TEXT
+    document_id: str
+    document_filename: str
+    page_number: Optional[int] = None
+    title: Optional[str] = None
+    caption: Optional[str] = None
+    content_snippet: str
+    table_data: Optional[TableData] = None
+    chart_data: Optional[ChartFigureData] = None
+    image_data: Optional[ImageData] = None
+    code_data: Optional[CodeBlockData] = None
+    relevance_score: float = 0.0
+    provenance_label: str  # e.g. "Figure 3 • Paper.pdf • Page 12"
+
+
+class MultimodalRetrievalResult(BaseModel):
+    query: str
+    synthesis_markdown: str
+    evidence_items: List[MultimodalEvidenceItem] = Field(default_factory=list)
+    modality_counts: Dict[str, int] = Field(default_factory=dict)
+    overall_confidence: float = 0.0
+    execution_time_ms: float = 0.0
+    model_used: str = "multimodal_evidence_v1"
+
+
+# ============================================================================
+# PHASE 9 — NEXUS RESEARCH AGENT MODELS
+# ============================================================================
+
+class ResearchSubQuestion(BaseModel):
+    id: str = Field(default_factory=lambda: f"sq-{uuid.uuid4().hex[:6]}")
+    question: str
+    priority: int = 1
+    status: str = "pending"  # pending, in_progress, answered, partial_gap
+    retrieved_evidence_ids: List[str] = Field(default_factory=list)
+    key_findings_summary: Optional[str] = None
+
+
+class ResearchPlan(BaseModel):
+    plan_id: str = Field(default_factory=lambda: f"plan-{uuid.uuid4().hex[:6]}")
+    goal: str
+    sub_questions: List[ResearchSubQuestion] = Field(default_factory=list)
+    identified_entities: List[str] = Field(default_factory=list)
+    key_hypotheses: List[str] = Field(default_factory=list)
+    strategy_overview: str = ""
+
+
+class ResearchActionStep(BaseModel):
+    step_number: int
+    action_type: str  # planning, graph_traversal, hybrid_search, evidence_analysis, gap_detection, verification, synthesis
+    description: str
+    status: str = "completed"  # in_progress, completed, skipped, failed
+    timestamp_ms: float = 0.0
+    details: Dict[str, Any] = Field(default_factory=dict)
+
+
+class SourceTableRow(BaseModel):
+    source_filename: str
+    source_type: str = "Academic Paper"
+    publication_date: Optional[str] = None
+    relevance_score: float = 0.0
+    reliability_score: float = 0.0
+    used_claims_count: int = 0
+    provenance_page: Optional[int] = 1
+
+
+class ResearchBudgetTelemetry(BaseModel):
+    total_tokens_estimated: int = 0
+    searches_executed: int = 0
+    retrieval_calls: int = 0
+    graph_queries_executed: int = 0
+    llm_calls_made: int = 0
+    execution_time_seconds: float = 0.0
+    budget_limit_reached: bool = False
+    termination_reason: str = "goal_completed"  # goal_completed, max_iterations_reached, budget_limit_reached, max_time_reached
+
+
+class ResearchGoalRequest(BaseModel):
+    goal: str
+    max_iterations: int = 3
+    max_searches: int = 8
+    max_time_seconds: int = 30
+    enable_graph_traversal: bool = True
+    enable_contradiction_detection: bool = True
+
+
+class ResearchAgentReportResult(BaseModel):
+    goal: str
+    plan: ResearchPlan
+    report_markdown: str
+    source_table: List[SourceTableRow] = Field(default_factory=list)
+    action_trace: List[ResearchActionStep] = Field(default_factory=list)
+    contradictions_found: List[Dict[str, Any]] = Field(default_factory=list)
+    telemetry: ResearchBudgetTelemetry
+    confidence_score: float = 0.0
+    model_used: str = "nexus_research_agent_v1"
+
+
+
+
+

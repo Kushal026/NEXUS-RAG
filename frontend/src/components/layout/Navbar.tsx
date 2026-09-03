@@ -1,13 +1,14 @@
 "use client";
 
-import React from "react";
-import { ShieldCheck, Cpu, Database, Layers, FileText, Search, Activity, Zap, Share2 } from "lucide-react";
+import { ShieldCheck, Cpu, Database, Layers, FileText, Search, Activity, Zap, Share2, ShieldAlert, Sparkles } from "lucide-react";
+
+
 import { SystemStatus } from "../../types";
 
 interface NavbarProps {
   status: SystemStatus | null;
-  activeTab: "dashboard" | "documents" | "research" | "graph" | "evaluation" | "settings";
-  setActiveTab: (tab: "dashboard" | "documents" | "research" | "graph" | "evaluation" | "settings") => void;
+  activeTab: "dashboard" | "documents" | "research" | "graph" | "evidence" | "self-correcting" | "multimodal" | "agent" | "evaluation" | "settings";
+  setActiveTab: (tab: "dashboard" | "documents" | "research" | "graph" | "evidence" | "self-correcting" | "multimodal" | "agent" | "evaluation" | "settings") => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab }) => {
@@ -24,8 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab 
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-bold tracking-tight text-white">NEXUS-RAG</h1>
-            <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-              Phase 5 Graph Engine
+            <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20">
+              Phase 9 Research Agent
             </span>
           </div>
           <p className="text-xs text-slate-400">Neural Evidence & eXplainability Unified Search</p>
@@ -85,8 +86,56 @@ export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab 
         >
           <Share2 className="w-4 h-4 text-cyan-400" />
           Knowledge Graph
-          <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-cyan-500/20 text-[9px] text-cyan-300 font-semibold uppercase">
-            Phase 5
+        </button>
+
+        <button
+          onClick={() => setActiveTab("evidence")}
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
+            activeTab === "evidence"
+              ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-600/30"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
+          }`}
+        >
+          <ShieldAlert className="w-4 h-4 text-emerald-400" />
+          Evidence Inspector
+        </button>
+
+        <button
+          onClick={() => setActiveTab("self-correcting")}
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
+            activeTab === "self-correcting"
+              ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md shadow-amber-600/30"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
+          }`}
+        >
+          <Sparkles className="w-4 h-4 text-amber-400" />
+          Self-Correction
+        </button>
+
+        <button
+          onClick={() => setActiveTab("multimodal")}
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
+            activeTab === "multimodal"
+              ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md shadow-violet-600/30"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
+          }`}
+        >
+          <Layers className="w-4 h-4 text-violet-400" />
+          Multimodal
+        </button>
+
+        <button
+          onClick={() => setActiveTab("agent")}
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
+            activeTab === "agent"
+              ? "bg-gradient-to-r from-rose-600 via-pink-600 to-red-600 text-white shadow-md shadow-rose-600/30"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
+          }`}
+        >
+          <Zap className="w-4 h-4 text-rose-400" />
+          Research Agent
+          <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-rose-500/20 text-[9px] text-rose-300 font-semibold uppercase">
+            Phase 9
           </span>
         </button>
 
@@ -114,6 +163,10 @@ export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab 
           Settings
         </button>
       </div>
+
+
+
+
 
       {/* Engine Status Indicators */}
       <div className="hidden lg:flex items-center gap-4 text-xs">

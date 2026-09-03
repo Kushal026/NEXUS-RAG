@@ -424,6 +424,315 @@ export interface HybridGraphRAGResult {
   model_used: string;
 }
 
+// ============================================================================
+// PHASE 6 — EVIDENCE INTELLIGENCE ENGINE TYPES
+// ============================================================================
+
+export type NLIClassificationType =
+  | "entailment"
+  | "contradiction"
+  | "partial_contradiction"
+  | "different_conditions"
+  | "temporal_difference"
+  | "neutral";
+
+export interface NLIResult {
+  premise: string;
+  hypothesis: string;
+  verdict: NLIClassificationType;
+  confidence: number;
+  explanation: string;
+  condition_a?: string;
+  condition_b?: string;
+  metric_diff?: string;
+}
+
+export interface SourceReliabilityScore {
+  document_filename: string;
+  overall_score: number;
+  source_type_score: number;
+  authority_score: number;
+  recency_score: number;
+  corroboration_score: number;
+  citation_quality_score: number;
+  document_type: string;
+  explanation: string;
+}
+
+export interface GroupedClaimEvidence {
+  claim_id: string;
+  statement: string;
+  supporting_citations: EvidenceCitation[];
+  contradicting_citations: EvidenceCitation[];
+  conflict_explanation?: string;
+  has_conflict: boolean;
+  verification_status: "supported" | "partially_supported" | "contradicted" | "insufficient_evidence";
+  confidence_score: number;
+  source_qualities: Record<string, SourceReliabilityScore>;
+}
+
+export interface CompositeScoreBreakdown {
+  relevance_component: number;
+  source_reliability_component: number;
+  temporal_relevance_component: number;
+  agreement_component: number;
+  coverage_component: number;
+  formula_weights: Record<string, number>;
+  final_composite_score: number;
+}
+
+export interface EvidenceIntelligenceReport {
+  query: string;
+  synthesis_markdown: string;
+  grouped_claims: GroupedClaimEvidence[];
+  evidence_coverage_percentage: number;
+  supported_claims_count: number;
+  contradicted_claims_count: number;
+  unsupported_claims_count: number;
+  is_insufficient_evidence: boolean;
+  insufficient_evidence_reason?: string;
+  composite_evidence_score: number;
+  score_breakdown?: CompositeScoreBreakdown;
+  source_reliability_matrix: Record<string, SourceReliabilityScore>;
+  retrieved_chunks: ScoredChunk[];
+  execution_time_ms: number;
+  model_used: string;
+}
+
+// ============================================================================
+// PHASE 7 — SELF-CORRECTING RETRIEVAL ENGINE TYPES
+// ============================================================================
+
+export type SelfCorrectionDecision =
+  | "generate"
+  | "retry_missing_evidence"
+  | "retry_resolve_contradiction"
+  | "abstain";
+
+export interface RetrievalQualityScore {
+  overall_quality: number;
+  relevance_score: number;
+  coverage_score: number;
+  source_quality_score: number;
+  redundancy_score: number;
+  has_contradictions: boolean;
+  missing_gaps: string[];
+  recommended_decision: SelfCorrectionDecision;
+  evaluation_reason: string;
+}
+
+export interface SelfCorrectionIteration {
+  iteration_number: number;
+  search_query: string;
+  rewrite_strategy?: string;
+  retrieved_chunks_count: number;
+  accumulated_chunks_count: number;
+  quality_evaluation?: RetrievalQualityScore;
+  decision_taken: string;
+  notes?: string;
+}
+
+export interface VerifiedClaimItem {
+  claim_text: string;
+  status: "supported" | "unsupported" | "contradicted";
+  confidence: number;
+  supporting_citations: EvidenceCitation[];
+  verification_note?: string;
+}
+
+export interface AnswerVerificationResult {
+  raw_answer: string;
+  final_answer: string;
+  extracted_claims: string[];
+  verified_claim_items: VerifiedClaimItem[];
+  supported_claims_count: number;
+  unsupported_claims_count: number;
+  contradicted_claims_count: number;
+  unsupported_claim_rate: number;
+  was_regenerated: boolean;
+  regeneration_reason?: string;
+}
+
+export interface SelfCorrectingRAGResult {
+  query: string;
+  final_answer_markdown: string;
+  status: "first_pass_success" | "recovered" | "abstained";
+  total_iterations: number;
+  max_iterations_allowed: number;
+  iterations_trace: SelfCorrectionIteration[];
+  accumulated_chunks: ScoredChunk[];
+  verification?: AnswerVerificationResult;
+  final_evidence_coverage: number;
+  is_abstained: boolean;
+  abstention_reason?: string;
+  execution_time_ms: number;
+  metrics: Record<string, any>;
+  model_used: string;
+}
+
+// ============================================================================
+// PHASE 8 — MULTIMODAL EVIDENCE ENGINE TYPES
+// ============================================================================
+
+export type ModalityType = "text" | "table" | "figure" | "chart" | "image" | "code";
+
+export interface TableData {
+  table_id: string;
+  headers: string[];
+  rows: string[][];
+  num_rows: number;
+  num_cols: number;
+  caption?: string;
+  source_page?: number;
+  markdown_repr: string;
+}
+
+export interface ChartFigureData {
+  figure_id: string;
+  title?: string;
+  caption?: string;
+  figure_type: "chart" | "diagram" | "architecture" | "plot" | "scan" | "figure";
+  x_axis_label?: string;
+  y_axis_label?: string;
+  visible_values: string[];
+  explanatory_text?: string;
+  source_page?: number;
+  image_url?: string;
+}
+
+export interface ImageData {
+  image_id: string;
+  image_type: "scan" | "photo" | "diagram" | "screenshot";
+  ocr_text?: string;
+  caption?: string;
+  source_page?: number;
+  image_format: string;
+}
+
+export interface CodeBlockData {
+  code_id: string;
+  language: string;
+  code_content: string;
+  source_file?: string;
+  source_page?: number;
+}
+
+export interface MultimodalDocumentRepresentation {
+  document_id: string;
+  filename: string;
+  text_chunks: DocumentChunk[];
+  tables: TableData[];
+  figures: ChartFigureData[];
+  images: ImageData[];
+  code_blocks: CodeBlockData[];
+  metadata: DocumentMetadata;
+  references: string[];
+}
+
+export interface MultimodalEvidenceItem {
+  evidence_id: string;
+  modality: ModalityType;
+  document_id: string;
+  document_filename: string;
+  page_number?: number;
+  title?: string;
+  caption?: string;
+  content_snippet: string;
+  table_data?: TableData;
+  chart_data?: ChartFigureData;
+  image_data?: ImageData;
+  code_data?: CodeBlockData;
+  relevance_score: number;
+  provenance_label: string;
+}
+
+export interface MultimodalRetrievalResult {
+  query: string;
+  synthesis_markdown: string;
+  evidence_items: MultimodalEvidenceItem[];
+  modality_counts: Record<string, number>;
+  overall_confidence: number;
+  execution_time_ms: number;
+  model_used: string;
+}
+
+// ============================================================================
+// PHASE 9 — NEXUS RESEARCH AGENT TYPES
+// ============================================================================
+
+export interface ResearchSubQuestion {
+  id: string;
+  question: string;
+  priority: number;
+  status: "pending" | "in_progress" | "answered" | "partial_gap";
+  retrieved_evidence_ids: string[];
+  key_findings_summary?: string;
+}
+
+export interface ResearchPlan {
+  plan_id: string;
+  goal: string;
+  sub_questions: ResearchSubQuestion[];
+  identified_entities: string[];
+  key_hypotheses: string[];
+  strategy_overview: string;
+}
+
+export interface ResearchActionStep {
+  step_number: number;
+  action_type: "planning" | "graph_traversal" | "hybrid_search" | "evidence_analysis" | "gap_detection" | "verification" | "synthesis";
+  description: string;
+  status: "in_progress" | "completed" | "skipped" | "failed";
+  timestamp_ms: number;
+  details: Record<string, any>;
+}
+
+export interface SourceTableRow {
+  source_filename: string;
+  source_type: string;
+  publication_date?: string;
+  relevance_score: number;
+  reliability_score: number;
+  used_claims_count: number;
+  provenance_page?: number;
+}
+
+export interface ResearchBudgetTelemetry {
+  total_tokens_estimated: number;
+  searches_executed: number;
+  retrieval_calls: number;
+  graph_queries_executed: number;
+  llm_calls_made: number;
+  execution_time_seconds: number;
+  budget_limit_reached: boolean;
+  termination_reason: "goal_completed" | "max_iterations_reached" | "budget_limit_reached" | "max_time_reached";
+}
+
+export interface ResearchGoalRequest {
+  goal: string;
+  max_iterations?: number;
+  max_searches?: number;
+  max_time_seconds?: number;
+  enable_graph_traversal?: boolean;
+  enable_contradiction_detection?: boolean;
+}
+
+export interface ResearchAgentReportResult {
+  goal: string;
+  plan: ResearchPlan;
+  report_markdown: string;
+  source_table: SourceTableRow[];
+  action_trace: ResearchActionStep[];
+  contradictions_found: Record<string, any>[];
+  telemetry: ResearchBudgetTelemetry;
+  confidence_score: number;
+  model_used: string;
+}
+
+
+
+
+
 
 
 

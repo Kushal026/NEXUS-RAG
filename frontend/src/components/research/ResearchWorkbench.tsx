@@ -37,9 +37,11 @@ import { TemporalFilter } from "../../types";
 
 interface ResearchWorkbenchProps {
   documents: DocumentInfo[];
+  onNavigateToDocs?: () => void;
 }
 
-export const ResearchWorkbench: React.FC<ResearchWorkbenchProps> = ({ documents }) => {
+export const ResearchWorkbench: React.FC<ResearchWorkbenchProps> = ({ documents, onNavigateToDocs }) => {
+
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [streaming, setStreaming] = useState(false);

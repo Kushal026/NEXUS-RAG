@@ -70,6 +70,15 @@ class Settings(BaseSettings):
     GRAPH_MIN_CONFIDENCE: float = 0.5
     GRAPH_STORE_PATH: Optional[Path] = None
 
+    # Security, JWT & Multi-Tenancy (Phase 10)
+    SECRET_KEY: str = Field(default="nexus_rag_enterprise_secret_key_2026_super_secure", description="JWT Signing Key")
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
+
+    # Caching
+    REDIS_URL: Optional[str] = None
+
+
     def init_directories(self) -> None:
         """Ensure all required local directories exist."""
         self.STORAGE_DIR.mkdir(parents=True, exist_ok=True)
