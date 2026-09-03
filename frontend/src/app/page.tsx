@@ -8,11 +8,12 @@ import { DocumentDetailsView } from "../components/documents/DocumentDetailsView
 import { ResearchWorkbench } from "../components/research/ResearchWorkbench";
 import { EvaluationDashboard } from "../components/evaluation/EvaluationDashboard";
 import { SettingsView } from "../components/settings/SettingsView";
+import { KnowledgeGraphView } from "../components/graph/KnowledgeGraphView";
 import { SystemStatus, DocumentInfo } from "../types";
 import { api } from "../services/api";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<"dashboard" | "documents" | "research" | "evaluation" | "settings">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "documents" | "research" | "graph" | "evaluation" | "settings">("dashboard");
   const [selectedDocument, setSelectedDocument] = useState<DocumentInfo | null>(null);
   const [status, setStatus] = useState<SystemStatus | null>(null);
   const [documents, setDocuments] = useState<DocumentInfo[]>([]);
@@ -43,7 +44,7 @@ export default function Home() {
     setSelectedDocument(doc);
   };
 
-  const handleTabChange = (tab: "dashboard" | "documents" | "research" | "evaluation" | "settings") => {
+  const handleTabChange = (tab: "dashboard" | "documents" | "research" | "graph" | "evaluation" | "settings") => {
     setSelectedDocument(null);
     setActiveTab(tab);
   };
@@ -82,6 +83,10 @@ export default function Home() {
               <ResearchWorkbench documents={documents} />
             )}
 
+            {activeTab === "graph" && (
+              <KnowledgeGraphView documents={documents} />
+            )}
+
             {activeTab === "evaluation" && (
               <EvaluationDashboard />
             )}
@@ -96,13 +101,16 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-slate-800/80 py-4 px-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2 bg-slate-950/80">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>NEXUS-RAG Advanced Hybrid Retrieval Pipeline • Phase 2 Active</span>
+          <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+          <span>NEXUS-RAG Advanced Hybrid Retrieval & Knowledge Graph Engine • Phase 5 Active</span>
         </div>
-        <div className="font-mono text-[11px] text-slate-400">
-          Query Understanding → Dense (pgvector) + BM25 Lexical → RRF Fusion (Top 50) → Cross-Encoder Reranker (Top 10)
+        <div className="flex items-center gap-4">
+          <span>Neo4j Dual-Engine Active</span>
+          <span>•</span>
+          <span>Zero-Hallucination Provenance Architecture</span>
         </div>
       </footer>
     </div>
   );
 }
+

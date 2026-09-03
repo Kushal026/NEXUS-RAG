@@ -1,0 +1,306 @@
+{
+  "entities": [
+    {
+      "id": "96b23709-f388-46c3-9c43-24b731e844a0",
+      "canonical_name": "Quantum Computing",
+      "entity_type": "concept",
+      "aliases": [],
+      "description": null,
+      "mention_count": 2,
+      "provenance_list": [
+        {
+          "document_id": "35071674-6efd-47a7-b235-941fcae252c3",
+          "document_filename": "quantum_notes.md",
+          "chunk_id": "35071674-6efd-47a7-b235-941fcae252c3_chunk_0",
+          "page_number": 1,
+          "section_title": "Quantum Computing and Neural Networks",
+          "exact_snippet": "# Quantum Computing and Neural Networks\n\nQuantum superposit",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T13:01:25.987720"
+        }
+      ],
+      "properties": {},
+      "created_at": "2026-09-03T13:01:25.988719"
+    },
+    {
+      "id": "8d3e510d-31bd-4bcf-8ba3-f5631c6a7121",
+      "canonical_name": "Neural Networks Quantum",
+      "entity_type": "concept",
+      "aliases": [
+        "Neural Networks\n\nQuantum"
+      ],
+      "description": null,
+      "mention_count": 2,
+      "provenance_list": [
+        {
+          "document_id": "35071674-6efd-47a7-b235-941fcae252c3",
+          "document_filename": "quantum_notes.md",
+          "chunk_id": "35071674-6efd-47a7-b235-941fcae252c3_chunk_0",
+          "page_number": 1,
+          "section_title": "Quantum Computing and Neural Networks",
+          "exact_snippet": "# Quantum Computing and Neural Networks\n\nQuantum superposition allows qubits to represen",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T13:01:25.987720"
+        }
+      ],
+      "properties": {},
+      "created_at": "2026-09-03T13:01:25.992204"
+    },
+    {
+      "id": "1ecfd187-c44d-4b13-b367-1baf3be41934",
+      "canonical_name": "OpenAI",
+      "entity_type": "organization",
+      "aliases": [],
+      "description": null,
+      "mention_count": 1,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "OpenAI released GPT-4. Claude is an alternativ",
+          "confidence": 0.95,
+          "extracted_at": "2026-09-03T13:02:42.852871"
+        }
+      ],
+      "properties": {},
+      "created_at": "2026-09-03T13:02:42.853466"
+    },
+    {
+      "id": "176a027b-5b6c-4364-839e-46066d82ff2c",
+      "canonical_name": "Anthropic",
+      "entity_type": "organization",
+      "aliases": [],
+      "description": null,
+      "mention_count": 1,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "de is an alternative model developed by Anthropic that competes with GPT-4.",
+          "confidence": 0.95,
+          "extracted_at": "2026-09-03T13:02:42.852871"
+        }
+      ],
+      "properties": {},
+      "created_at": "2026-09-03T13:02:42.858129"
+    },
+    {
+      "id": "413b57ae-58ac-4272-836a-41327e5b1a35",
+      "canonical_name": "GPT-4",
+      "entity_type": "model",
+      "aliases": [],
+      "description": null,
+      "mention_count": 3,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "OpenAI released GPT-4. Claude is an alternative model develop",
+          "confidence": 0.95,
+          "extracted_at": "2026-09-03T13:02:42.852871"
+        },
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "veloped by Anthropic that competes with GPT-4.",
+          "confidence": 0.95,
+          "extracted_at": "2026-09-03T13:02:42.853466"
+        }
+      ],
+      "properties": {},
+      "created_at": "2026-09-03T13:02:42.861370"
+    },
+    {
+      "id": "3cfe5c53-7423-4301-8df1-20b2bb0ff9b1",
+      "canonical_name": "Claude",
+      "entity_type": "model",
+      "aliases": [],
+      "description": null,
+      "mention_count": 1,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "OpenAI released GPT-4. Claude is an alternative model developed by An",
+          "confidence": 0.95,
+          "extracted_at": "2026-09-03T13:02:42.852871"
+        }
+      ],
+      "properties": {},
+      "created_at": "2026-09-03T13:02:42.865370"
+    }
+  ],
+  "edges": [
+    {
+      "id": "706b4a04-14de-43cc-bb47-30c33417b9aa",
+      "source_id": "1ecfd187-c44d-4b13-b367-1baf3be41934",
+      "source_name": "OpenAI",
+      "target_id": "413b57ae-58ac-4272-836a-41327e5b1a35",
+      "target_name": "GPT-4",
+      "relationship_type": "RELATED_TO",
+      "description": "OpenAI is mentioned alongside GPT-4",
+      "weight": 0.65,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "OpenAI released GPT-4.",
+          "confidence": 0.65,
+          "extracted_at": "2026-09-03T13:02:42.873370"
+        }
+      ],
+      "properties": {
+        "sentence": "OpenAI released GPT-4."
+      },
+      "created_at": "2026-09-03T13:02:42.873370"
+    },
+    {
+      "id": "eacb0a21-3f70-44d0-bece-afc2a3664729",
+      "source_id": "413b57ae-58ac-4272-836a-41327e5b1a35",
+      "source_name": "GPT-4",
+      "target_id": "1ecfd187-c44d-4b13-b367-1baf3be41934",
+      "target_name": "OpenAI",
+      "relationship_type": "CREATED_BY",
+      "description": "GPT-4 created by OpenAI",
+      "weight": 0.85,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "OpenAI released GPT-4.",
+          "confidence": 0.85,
+          "extracted_at": "2026-09-03T13:02:42.873370"
+        }
+      ],
+      "properties": {
+        "sentence": "OpenAI released GPT-4."
+      },
+      "created_at": "2026-09-03T13:02:42.873370"
+    },
+    {
+      "id": "9954f666-ba11-4b5b-8f84-3f6a5692b1e3",
+      "source_id": "176a027b-5b6c-4364-839e-46066d82ff2c",
+      "source_name": "Anthropic",
+      "target_id": "413b57ae-58ac-4272-836a-41327e5b1a35",
+      "target_name": "GPT-4",
+      "relationship_type": "RELATED_TO",
+      "description": "Anthropic is mentioned alongside GPT-4",
+      "weight": 0.65,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
+          "confidence": 0.65,
+          "extracted_at": "2026-09-03T13:02:42.874370"
+        }
+      ],
+      "properties": {
+        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
+      },
+      "created_at": "2026-09-03T13:02:42.874370"
+    },
+    {
+      "id": "9612cb59-dcf8-42a4-aea2-f8e9a721fdb1",
+      "source_id": "413b57ae-58ac-4272-836a-41327e5b1a35",
+      "source_name": "GPT-4",
+      "target_id": "176a027b-5b6c-4364-839e-46066d82ff2c",
+      "target_name": "Anthropic",
+      "relationship_type": "CREATED_BY",
+      "description": "GPT-4 is created/authored by Anthropic",
+      "weight": 0.95,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
+          "confidence": 0.95,
+          "extracted_at": "2026-09-03T13:02:42.874370"
+        }
+      ],
+      "properties": {
+        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
+      },
+      "created_at": "2026-09-03T13:02:42.874370"
+    },
+    {
+      "id": "8d0ec62d-1bab-4710-8c15-0c370a980806",
+      "source_id": "3cfe5c53-7423-4301-8df1-20b2bb0ff9b1",
+      "source_name": "Claude",
+      "target_id": "176a027b-5b6c-4364-839e-46066d82ff2c",
+      "target_name": "Anthropic",
+      "relationship_type": "CREATED_BY",
+      "description": "Claude is created/authored by Anthropic",
+      "weight": 0.95,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
+          "confidence": 0.95,
+          "extracted_at": "2026-09-03T13:02:42.874370"
+        }
+      ],
+      "properties": {
+        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
+      },
+      "created_at": "2026-09-03T13:02:42.875370"
+    },
+    {
+      "id": "ba81dbb6-c2b7-43f4-888a-55efa141cc64",
+      "source_id": "3cfe5c53-7423-4301-8df1-20b2bb0ff9b1",
+      "source_name": "Claude",
+      "target_id": "413b57ae-58ac-4272-836a-41327e5b1a35",
+      "target_name": "GPT-4",
+      "relationship_type": "RELATED_TO",
+      "description": "Claude is mentioned alongside GPT-4",
+      "weight": 0.65,
+      "provenance_list": [
+        {
+          "document_id": "doc-rag-01",
+          "document_filename": "models_overview.pdf",
+          "chunk_id": "c-rag-test",
+          "page_number": 2,
+          "section_title": null,
+          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
+          "confidence": 0.65,
+          "extracted_at": "2026-09-03T13:02:42.875370"
+        }
+      ],
+      "properties": {
+        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
+      },
+      "created_at": "2026-09-03T13:02:42.875370"
+    }
+  ]
+}

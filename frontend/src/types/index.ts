@@ -305,5 +305,125 @@ export interface AppSettings {
   defaultTopK: number;
 }
 
+// ============================================================================
+// PHASE 5 — KNOWLEDGE GRAPH INTELLIGENCE TYPES
+// ============================================================================
+
+export type EntityType =
+  | "person"
+  | "organization"
+  | "company"
+  | "technology"
+  | "model"
+  | "paper"
+  | "dataset"
+  | "concept"
+  | "event"
+  | "product"
+  | "location"
+  | "date";
+
+export type RelationshipType =
+  | "AUTHORED_BY"
+  | "CREATED_BY"
+  | "USES"
+  | "DEPENDS_ON"
+  | "INTRODUCED"
+  | "EVALUATED_ON"
+  | "COMPETES_WITH"
+  | "RELATED_TO"
+  | "PRECEDED_BY"
+  | "SUCCEEDED_BY"
+  | "AFFILIATED_WITH"
+  | "PART_OF"
+  | "TRAINED_ON";
+
+export interface GraphProvenance {
+  document_id: string;
+  document_filename: string;
+  chunk_id: string;
+  page_number?: number;
+  section_title?: string;
+  exact_snippet: string;
+  confidence: number;
+  extracted_at?: string;
+}
+
+export interface EntityNode {
+  id: string;
+  canonical_name: string;
+  entity_type: EntityType;
+  aliases: string[];
+  description?: string;
+  mention_count: number;
+  provenance_list: GraphProvenance[];
+  properties?: Record<string, any>;
+  created_at?: string;
+}
+
+export interface RelationshipEdge {
+  id: string;
+  source_id: string;
+  source_name: string;
+  target_id: string;
+  target_name: string;
+  relationship_type: RelationshipType;
+  description?: string;
+  weight: number;
+  provenance_list: GraphProvenance[];
+  properties?: Record<string, any>;
+  created_at?: string;
+}
+
+export interface KnowledgeGraphSubgraph {
+  nodes: EntityNode[];
+  edges: RelationshipEdge[];
+  query_entity_id?: string;
+  depth: number;
+  total_nodes: number;
+  total_edges: number;
+}
+
+export interface GraphPath {
+  nodes: EntityNode[];
+  edges: RelationshipEdge[];
+  path_description: string;
+  hops: number;
+}
+
+export interface GraphStats {
+  total_entities: number;
+  total_relationships: number;
+  entity_types_count: Record<string, number>;
+  relationship_types_count: Record<string, number>;
+  storage_engine: string;
+  connected: boolean;
+}
+
+export interface HybridGraphQueryRequest {
+  query: string;
+  top_k?: number;
+  max_graph_hops?: number;
+  graph_boost_factor?: number;
+  use_dense?: boolean;
+  use_sparse?: boolean;
+  use_reranker?: boolean;
+}
+
+export interface HybridGraphRAGResult {
+  query: string;
+  synthesis_markdown: string;
+  claims: EvidenceClaim[];
+  retrieved_chunks: ScoredChunk[];
+  graph_entities: EntityNode[];
+  graph_relationships: RelationshipEdge[];
+  graph_paths: GraphPath[];
+  subgraph?: KnowledgeGraphSubgraph;
+  overall_confidence: number;
+  execution_time_ms: number;
+  model_used: string;
+}
+
+
 
 

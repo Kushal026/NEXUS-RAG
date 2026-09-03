@@ -60,6 +60,16 @@ class Settings(BaseSettings):
     CHUNK_OVERLAP: int = 120
     MIN_CHUNK_LENGTH: int = 50
 
+    # Knowledge Graph & Neo4j Settings (Phase 5)
+    GRAPH_STORAGE_MODE: Literal["auto", "neo4j", "local"] = "auto"
+    NEO4J_URI: str = "bolt://localhost:7687"
+    NEO4J_USER: str = "neo4j"
+    NEO4J_PASSWORD: str = "nexus_graph_password"
+    NEO4J_DATABASE: str = "neo4j"
+    GRAPH_MAX_HOPS: int = 2
+    GRAPH_MIN_CONFIDENCE: float = 0.5
+    GRAPH_STORE_PATH: Optional[Path] = None
+
     def init_directories(self) -> None:
         """Ensure all required local directories exist."""
         self.STORAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -69,3 +79,4 @@ class Settings(BaseSettings):
 
 settings = Settings()
 settings.init_directories()
+

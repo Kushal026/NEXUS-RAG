@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, Cpu, Database, Layers, FileText, Search, Activity, Zap } from "lucide-react";
+import { ShieldCheck, Cpu, Database, Layers, FileText, Search, Activity, Zap, Share2 } from "lucide-react";
 import { SystemStatus } from "../../types";
 
 interface NavbarProps {
   status: SystemStatus | null;
-  activeTab: "dashboard" | "documents" | "research" | "evaluation" | "settings";
-  setActiveTab: (tab: "dashboard" | "documents" | "research" | "evaluation" | "settings") => void;
+  activeTab: "dashboard" | "documents" | "research" | "graph" | "evaluation" | "settings";
+  setActiveTab: (tab: "dashboard" | "documents" | "research" | "graph" | "evaluation" | "settings") => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab }) => {
@@ -24,8 +24,8 @@ export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab 
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-bold tracking-tight text-white">NEXUS-RAG</h1>
-            <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-              Phase 2 Engine
+            <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+              Phase 5 Graph Engine
             </span>
           </div>
           <p className="text-xs text-slate-400">Neural Evidence & eXplainability Unified Search</p>
@@ -73,6 +73,21 @@ export const Navbar: React.FC<NavbarProps> = ({ status, activeTab, setActiveTab 
         >
           <Search className="w-4 h-4" />
           Research / Ask
+        </button>
+
+        <button
+          onClick={() => setActiveTab("graph")}
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
+            activeTab === "graph"
+              ? "bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-md shadow-cyan-600/30"
+              : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
+          }`}
+        >
+          <Share2 className="w-4 h-4 text-cyan-400" />
+          Knowledge Graph
+          <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-cyan-500/20 text-[9px] text-cyan-300 font-semibold uppercase">
+            Phase 5
+          </span>
         </button>
 
         <button

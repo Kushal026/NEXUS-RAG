@@ -177,4 +177,86 @@ export const api = {
     }
     return res.json();
   },
+
+  // ==========================================================================
+  // PHASE 5 — KNOWLEDGE GRAPH API METHODS
+  // ==========================================================================
+
+  async getGraphStats(): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/graph/stats`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to load graph stats: ${res.statusText}`);
+    return res.json();
+  },
+
+  async getGraphSchema(): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/graph/schema`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to load graph schema: ${res.statusText}`);
+    return res.json();
+  },
+
+  async searchEntities(query: string = "", entity_type?: string, limit: number = 50): Promise<any[]> {
+    const params = new URLSearchParams();
+    if (query) params.append("query", query);
+    if (entity_type && entity_type !== "all") params.append("entity_type", entity_type);
+    params.append("limit", limit.toString());
+
+    const res = await fetch(`${API_BASE_URL}/graph/entities?${params.toString()}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to search entities: ${res.statusText}`);
+    return res.json();
+  },
+
+  async getEntityDetails(entityId: string): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/graph/entities/${entityId}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to get entity: ${res.statusText}`);
+    return res.json();
+  },
+
+  async getEntityNeighborhood(entityId: string, depth: number = 1): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/graph/neighborhood/${entityId}?depth=${depth}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to load neighborhood: ${res.statusText}`);
+    return res.json();
+  },
+
+  async executeHybridGraphRAG(req: any): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/graph/query`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || "Hybrid Graph RAG query failed");
+    }
+    return res.json();
+  },
+
+  async extractGraphFromText(text: string): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/graph/extract`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+    if (!res.ok) throw new Error(`Ad-hoc extraction failed: ${res.statusText}`);
+    return res.json();
+  },
+
+  async rebuildKnowledgeGraph(): Promise<any> {
+    const res = await fetch(`${API_BASE_URL}/graph/build`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!res.ok) throw new Error(`Graph rebuild failed: ${res.statusText}`);
+    return res.json();
+  },
+
+  async findEntityPaths(sourceName: string, targetName: string, maxDepth: number = 3): Promise<any[]> {
+    const res = await fetch(`${API_BASE_URL}/graph/paths`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ source_name: sourceName, target_name: targetName, max_depth: maxDepth }),
+    });
+    if (!res.ok) throw new Error(`Path finding failed: ${res.statusText}`);
+    return res.json();
+  },
 };
+

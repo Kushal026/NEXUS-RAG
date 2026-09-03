@@ -84,3 +84,37 @@ class BaseLLMProvider(Protocol):
         evidence_chunks: List[ScoredChunk]
     ) -> EvidenceSynthesisResult:
         ...
+
+
+class BaseGraphStore(Protocol):
+    """Protocol for Knowledge Graph storage, traversal, and querying (Neo4j / Local)."""
+    def upsert_entity(self, entity: Any) -> Any:
+        ...
+
+    def upsert_relationship(self, edge: Any) -> Any:
+        ...
+
+    def get_entity_by_id(self, entity_id: str) -> Optional[Any]:
+        ...
+
+    def find_entity_by_name(self, name: str) -> Optional[Any]:
+        ...
+
+    def search_entities(self, query: str, entity_type: Optional[str] = None, limit: int = 50) -> List[Any]:
+        ...
+
+    def get_neighborhood(self, entity_id: str, depth: int = 1) -> Any:
+        ...
+
+    def find_paths(self, source_name: str, target_name: str, max_depth: int = 3) -> List[Any]:
+        ...
+
+    def get_stats(self) -> Any:
+        ...
+
+    def delete_by_document_id(self, document_id: str) -> int:
+        ...
+
+    def clear(self) -> None:
+        ...
+

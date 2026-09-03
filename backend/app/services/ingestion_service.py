@@ -10,6 +10,7 @@ from app.infrastructure.chunking.semantic_chunker import SemanticChunker
 from app.infrastructure.embeddings.embedder import get_embedder
 from app.infrastructure.retrieval.vector_store import DenseVectorStore
 from app.infrastructure.retrieval.keyword_store import BM25KeywordStore
+from app.services.graph_service import GraphService
 from app.core.config import settings
 from app.core.logging import logger
 
@@ -20,19 +21,25 @@ class IngestionService:
     def __init__(
         self,
         vector_store: Optional[DenseVectorStore] = None,
-        keyword_store: Optional[BM25KeywordStore] = None
+        keyword_store: Optional[BM25KeywordStore] = None,
+        graph_service: Optional[GraphService] = None
     ):
         self.vector_store = vector_store or DenseVectorStore()
         self.keyword_store = keyword_store or BM25KeywordStore()
+        self.graph_service = graph_service or GraphService()
         self.chunker = SemanticChunker()
         self.embedder = get_embedder()
         self.registry_file = settings.DOCUMENTS_DIR / "document_registry.json"
         self._doc_registry: Dict[str, Dict[str, Any]] = self._load_registry()
 
-        # Re-index existing vector store chunks into BM25 on startup if needed
+        # Re-index existing vector store chunks into BM25 and Knowledge Graph if needed
         all_chunks = self.vector_store.list_all_chunks()
         if all_chunks and not self.keyword_store.chunks:
             self.keyword_store.index_chunks(all_chunks)
+        if all_chunks and self.graph_service.get_stats().total_entities == 0:
+            for c in all_chunks:
+                self.graph_service.index_chunk_graph(c)
+
 
     def _load_registry(self) -> Dict[str, Dict[str, Any]]:
         if self.registry_file.exists():
@@ -77,9 +84,14 @@ class IngestionService:
         for idx, chunk in enumerate(chunks):
             chunk.embedding = embeddings[idx]
 
-        # 4. Index in Dense Vector Store & BM25 Keyword Store
+        # 4. Index in Dense Vector Store & BM25 Keyword Store & Knowledge Graph
         self.vector_store.add_chunks(chunks)
         self.keyword_store.index_chunks(chunks)
+        for chunk in chunks:
+            try:
+                self.graph_service.index_chunk_graph(chunk)
+            except Exception as e:
+                logger.error(f"Graph extraction failed for chunk {chunk.id}: {e}")
 
         # 5. Save document file copy locally
         save_path = settings.DOCUMENTS_DIR / f"{doc.id}_{filename}"
@@ -99,7 +111,7 @@ class IngestionService:
         }
         self._save_registry()
 
-        logger.info(f"Successfully ingested '{filename}': {len(chunks)} chunks indexed.")
+        logger.info(f"Successfully ingested '{filename}': {len(chunks)} chunks & graph entities indexed.")
         return {
             "document_id": doc.id,
             "filename": filename,
@@ -141,12 +153,14 @@ class IngestionService:
                 except Exception as e:
                     logger.warning(f"Could not remove file {file_path}: {e}")
 
-            # Remove from indices
+            # Remove from indices and Knowledge Graph
             self.vector_store.delete_by_document_id(document_id)
             self.keyword_store.delete_by_document_id(document_id)
+            self.graph_service.delete_document_graph(document_id)
 
             del self._doc_registry[document_id]
             self._save_registry()
             logger.info(f"Document '{document_id}' successfully deleted.")
             return True
         return False
+

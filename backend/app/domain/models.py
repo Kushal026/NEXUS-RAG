@@ -305,3 +305,115 @@ class BenchmarkReport(BaseModel):
     corpus_chunks_count: int
     results_by_method: Dict[str, MethodBenchmarkResult]
     hybrid_superiority_delta: Dict[str, float]
+
+
+# ============================================================================
+# PHASE 5 — KNOWLEDGE GRAPH INTELLIGENCE MODELS
+# ============================================================================
+
+class EntityType(str, Enum):
+    PERSON = "person"
+    ORGANIZATION = "organization"
+    COMPANY = "company"
+    TECHNOLOGY = "technology"
+    MODEL = "model"
+    PAPER = "paper"
+    DATASET = "dataset"
+    CONCEPT = "concept"
+    EVENT = "event"
+    PRODUCT = "product"
+    LOCATION = "location"
+    DATE = "date"
+
+
+class RelationshipType(str, Enum):
+    AUTHORED_BY = "AUTHORED_BY"
+    CREATED_BY = "CREATED_BY"
+    USES = "USES"
+    DEPENDS_ON = "DEPENDS_ON"
+    INTRODUCED = "INTRODUCED"
+    EVALUATED_ON = "EVALUATED_ON"
+    COMPETES_WITH = "COMPETES_WITH"
+    RELATED_TO = "RELATED_TO"
+    PRECEDED_BY = "PRECEDED_BY"
+    SUCCEEDED_BY = "SUCCEEDED_BY"
+    AFFILIATED_WITH = "AFFILIATED_WITH"
+    PART_OF = "PART_OF"
+    TRAINED_ON = "TRAINED_ON"
+
+
+class GraphProvenance(BaseModel):
+    document_id: str
+    document_filename: str
+    chunk_id: str
+    page_number: Optional[int] = None
+    section_title: Optional[str] = None
+    exact_snippet: str
+    confidence: float = 1.0
+    extracted_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
+
+class EntityNode(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    canonical_name: str
+    entity_type: EntityType = EntityType.CONCEPT
+    aliases: List[str] = Field(default_factory=list)
+    description: Optional[str] = None
+    mention_count: int = 1
+    provenance_list: List[GraphProvenance] = Field(default_factory=list)
+    properties: Dict[str, Any] = Field(default_factory=dict)
+    created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
+
+class RelationshipEdge(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    source_id: str
+    source_name: str
+    target_id: str
+    target_name: str
+    relationship_type: RelationshipType = RelationshipType.RELATED_TO
+    description: Optional[str] = None
+    weight: float = 1.0
+    provenance_list: List[GraphProvenance] = Field(default_factory=list)
+    properties: Dict[str, Any] = Field(default_factory=dict)
+    created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
+
+class KnowledgeGraphSubgraph(BaseModel):
+    nodes: List[EntityNode] = Field(default_factory=list)
+    edges: List[RelationshipEdge] = Field(default_factory=list)
+    query_entity_id: Optional[str] = None
+    depth: int = 1
+    total_nodes: int = 0
+    total_edges: int = 0
+
+
+class GraphPath(BaseModel):
+    nodes: List[EntityNode] = Field(default_factory=list)
+    edges: List[RelationshipEdge] = Field(default_factory=list)
+    path_description: str
+    hops: int = 1
+
+
+class GraphStats(BaseModel):
+    total_entities: int = 0
+    total_relationships: int = 0
+    entity_types_count: Dict[str, int] = Field(default_factory=dict)
+    relationship_types_count: Dict[str, int] = Field(default_factory=dict)
+    storage_engine: str = "local_memory"
+    connected: bool = True
+
+
+class HybridGraphRAGResult(BaseModel):
+    query: str
+    synthesis_markdown: str
+    claims: List[EvidenceClaim] = Field(default_factory=list)
+    retrieved_chunks: List[ScoredChunk] = Field(default_factory=list)
+    graph_entities: List[EntityNode] = Field(default_factory=list)
+    graph_relationships: List[RelationshipEdge] = Field(default_factory=list)
+    graph_paths: List[GraphPath] = Field(default_factory=list)
+    subgraph: Optional[KnowledgeGraphSubgraph] = None
+    overall_confidence: float = 0.0
+    execution_time_ms: float = 0.0
+    model_used: str = "hybrid_graph_rag_v1"
+
