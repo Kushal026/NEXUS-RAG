@@ -1,0 +1,68 @@
+{
+  "benchmark_name": "NEXUS-RAG Comprehensive Hybrid Retrieval Benchmark",
+  "version": "1.0.0",
+  "test_corpus": [
+    {
+      "id": "doc_tech_spec",
+      "filename": "quantum_hardware_specs.md",
+      "content": "## NEXUS-7700-TX Architecture\nThe NEXUS-7700-TX cryogenic controller operates at 15 millikelvin with 128-qubit superconducting coherence. It utilizes specialized GaAs microwave resonators for state readout.",
+      "category": "technical_specification"
+    },
+    {
+      "id": "doc_rf_protocol",
+      "filename": "networking_rfcs.md",
+      "content": "## Protocol RFC-9110 Specification\nHTTP Semantics defined under RFC-9110 establishes standardized status codes, idempotency rules, and caching semantics across proxy intermediaries.",
+      "category": "standards_protocol"
+    },
+    {
+      "id": "doc_neural_opt",
+      "filename": "deep_learning_theory.md",
+      "content": "## Gradient Descent and Loss Landscapes\nOptimization of deep neural networks relies on stochastic gradient descent with momentum and Adam adaptivity. Loss landscape curvature affects saddle point escape velocities.",
+      "category": "machine_learning"
+    },
+    {
+      "id": "doc_hybrid_rag",
+      "filename": "hybrid_search_principles.md",
+      "content": "## Hybrid Reciprocal Rank Fusion Principles\nCombining dense semantic vectors and sparse BM25 lexical search mitigates vocabulary mismatch while preserving exact entity matching. Cross-encoder neural rerankers evaluate full attention interactions.",
+      "category": "information_retrieval"
+    }
+  ],
+  "test_queries": [
+    {
+      "query_id": "q1",
+      "query": "What is the operating temperature of NEXUS-7700-TX controller?",
+      "query_type": "exact_alphanumeric_entity",
+      "relevant_chunk_texts": ["NEXUS-7700-TX cryogenic controller operates at 15 millikelvin"],
+      "relevance_grades": {
+        "quantum_hardware_specs.md": 3.0
+      }
+    },
+    {
+      "query_id": "q2",
+      "query": "RFC-9110 HTTP semantics status codes and caching",
+      "query_type": "exact_code_acronym",
+      "relevant_chunk_texts": ["Protocol RFC-9110 Specification", "HTTP Semantics defined under RFC-9110"],
+      "relevance_grades": {
+        "networking_rfcs.md": 3.0
+      }
+    },
+    {
+      "query_id": "q3",
+      "query": "How do momentum and adaptive learning rates assist neural network optimization?",
+      "query_type": "conceptual_semantic",
+      "relevant_chunk_texts": ["Optimization of deep neural networks relies on stochastic gradient descent"],
+      "relevance_grades": {
+        "deep_learning_theory.md": 3.0
+      }
+    },
+    {
+      "query_id": "q4",
+      "query": "Explain how hybrid retrieval solves vocabulary mismatch and improves search",
+      "query_type": "mixed_analytical",
+      "relevant_chunk_texts": ["Combining dense semantic vectors and sparse BM25 lexical search mitigates vocabulary mismatch"],
+      "relevance_grades": {
+        "hybrid_search_principles.md": 3.0
+      }
+    }
+  ]
+}
