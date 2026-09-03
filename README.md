@@ -1,17 +1,19 @@
-# NEXUS-RAG: Neural Evidence & eXplainability Unified Search
+# NEXUS — Evidence Intelligence for AI
 
 [![CI/CD Pipeline](https://github.com/Kushal026/NEXUS-RAG/actions/workflows/ci.yml/badge.svg)](https://github.com/Kushal026/NEXUS-RAG/actions)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-009688?logo=fastapi)](https://fastapi.tiangolo.com)
-[![Next.js](https://img.shields.io/badge/Next.js-14.0-black?logo=next.js)](https://nextjs.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688?logo=fastapi)](https://fastapi.tiangolo.com)
+[![Next.js](https://img.shields.io/badge/Next.js-14.2.1-black?logo=next.js)](https://nextjs.org)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)](https://python.org)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?logo=docker)](https://docker.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**NEXUS-RAG** is an enterprise-grade, state-of-the-art **Neural Evidence & Explainability Unified Search Platform**. It moves beyond naive chunk-level Retrieval-Augmented Generation by unifying **Hybrid Sparse-Dense Search (MiniLM + BM25 RRF)**, **Cross-Encoder Reranking**, **Neo4j Knowledge Graph Traversal**, **Temporal Filtering & Conflict Resolution**, **NLI Contradiction Analysis**, **Iterative Self-Correcting Recovery**, **Multimodal Document Understanding (PDF, Tables, Charts, Images/OCR, Code)**, and an **Autonomous 9-Section Research Agent**.
+**NEXUS** is an enterprise-grade, state-of-the-art **Evidence Intelligence & Neural Retrieval Platform**. It moves beyond naive chunk-level Retrieval-Augmented Generation by unifying **Hybrid Sparse-Dense Search (MiniLM + BM25 RRF)**, **Cross-Encoder Reranking**, **Neo4j Knowledge Graph Traversal**, **Temporal Filtering & Conflict Resolution**, **NLI Contradiction Analysis**, **Iterative Self-Correcting Recovery**, **Multimodal Document Understanding (PDF, Tables, Charts, Images/OCR, Code)**, and an **Autonomous 9-Section Research Agent**.
+
+> **Tagline**: *Retrieve, connect, verify, and reason over complex information with evidence-backed AI.*
 
 ---
 
-## 🌟 10-Phase Unified Architecture
+## 🌟 Architecture & Interactive Pipeline
 
 ```
                                   +---------------------------------------+
@@ -43,50 +45,70 @@
                                   +---------------------------------------+
 ```
 
+### 8-Stage Deterministic Verification Pipeline
+1. **UNDERSTAND**: Decompose complex questions into atomic sub-aspects, temporal filters, and entity anchors.
+2. **RETRIEVE**: Simultaneously query 384-dimensional dense semantic vectors and lexical BM25 token indices.
+3. **RERANK**: Compute exact cross-attention relevance scores for top candidate pools via `ms-marco-MiniLM-L-6-v2`.
+4. **CONNECT**: Expand retrieved facts with 2-hop entity relations, typed links, and document citations.
+5. **COMPARE**: Perform pairwise NLI entailment checks to detect conflicting claims across disparate sources.
+6. **VERIFY**: Confirm that accumulated evidence answers all sub-inquiries before generating conclusions.
+7. **REASON**: Synthesize structured findings with strict boundary isolation against prompt injection.
+8. **CITE**: Attribute every single claim to exact document names, pages, and verifiable quotes.
+
 ---
 
 ## 🚀 Key Platform Features
 
-### 1. Hybrid Sparse-Dense Retrieval & Cross-Encoder Reranking
+### 1. Public Landing Page & Experience
+- **Interactive Pipeline Visualizer**: Live animated representation of document extraction, dual-index retrieval, evidence verification, and citation synthesis.
+- **8 Capabilities Bento Grid**: Interactive cards for all intelligence subsystems.
+- **Evidence Transparency Breakdown**: Demonstrates claim-level citations, contradiction detection, and prompt defense.
+
+### 2. Authentication & Multi-User Data Isolation
+- **Secure JWT Session Management**: Cryptographic HMAC SHA-256 password hashing and signed JWT tokens with 24-hour expiration.
+- **Multiple Auth Providers**: Email/Username registration & login, password recovery with 30-minute tokens, and "Continue with Google".
+- **User Profile Management**: Global user profile dropdown with avatar initials, role badge, and session controls.
+- **Multi-Tenant Data Isolation**: Private document vaults and user-scoped vector retrievals preventing unauthorized data access.
+
+### 3. Hybrid Sparse-Dense Retrieval & Cross-Encoder Reranking
 - **Dense Embeddings**: `sentence-transformers/all-MiniLM-L6-v2` with Cosine Similarity indexing.
 - **Sparse Keyword Search**: BM25 ranking algorithm with term-frequency token normalization.
 - **Reciprocal Rank Fusion (RRF)**: $RRF(d) = \sum_{m} \frac{1}{k + r_m(d)}$ where $k=60$.
 - **Neural Cross-Encoder**: `cross-encoder/ms-marco-MiniLM-L-6-v2` calculating deep query-document relevance logits.
 
-### 2. Knowledge Graph Intelligence (Neo4j & In-Memory)
+### 4. Knowledge Graph Intelligence (Neo4j & In-Memory)
 - Multi-layer entity extraction across 12 domain taxonomies (`Person`, `Organization`, `Model`, `Technology`, `Dataset`, `Concept`, `Paper`, `Date`).
 - Relationship extraction (`AUTHORED_BY`, `USES`, `DEPENDS_ON`, `INTRODUCED`, `COMPETES_WITH`, `EVALUATED_ON`).
 - Entity resolution with Jaro-Winkler string similarity and provenance tracking.
 - Multi-hop graph traversal and Cypher neighborhood expansion.
 
-### 3. Evidence Intelligence & NLI Contradiction Detection
+### 5. Evidence Intelligence & NLI Contradiction Detection
 - Pairwise natural language inference: classifies relationships as **Agreement**, **Direct Contradiction**, **Partial Contradiction**, **Different Conditions**, or **Temporal Difference**.
 - Transparent multi-factor source reliability scoring: Authority, Venue Type, Corroboration Factor, Temporal Decay.
 - Strict `⚠ Conflicting evidence` warnings with contextual discrepancy explanations.
 
-### 4. Self-Correcting Iterative Retrieval Engine
+### 6. Self-Correcting Iterative Retrieval Engine
 - Automated retrieval quality evaluation across Relevance, Evidence Coverage, Source Quality, Redundancy, and Temporal Suitability.
 - Targeted query rewriting to fill identified missing evidence gaps.
 - Multi-iteration evidence accumulation preventing data loss.
 - Post-generation zero-hallucination factual claim verification.
 
-### 5. Multimodal Evidence Engine
+### 7. Multimodal Evidence Engine
 - Complete document hierarchy representation: `Document -> Text, Tables, Figures, Images, Metadata, References`.
 - Specialized parsers for Markdown/CSV/HTML tables, chart axes/visible values, OCR images, and 15+ programming languages.
 - Strict citation provenance tracking (e.g. `Figure 3 • Paper.pdf • Page 12`).
 
-### 6. NEXUS Autonomous Research Agent
+### 8. NEXUS Autonomous Research Agent
 - Autonomous bounded research planner decomposing goals into analytical sub-questions.
 - Multi-hop iterative evidence reading, gap detection, and graph-guided exploration.
 - Generates structured 9-section academic research reports with interactive source tables.
-- Strict budget guards (`max_iterations`, `max_searches`, `max_time_seconds`) and high-level action tracing without exposing hidden chain-of-thought.
+- Strict budget guards (`max_iterations`, `max_searches`, `max_time_seconds`) and high-level action tracing.
 
-### 7. Production Engineering, Security & Multi-Tenancy
-- **Authentication & RBAC**: JWT access tokens, password hashing, and role permissions (`Admin`, `Researcher`, `Viewer`).
-- **Multi-Tenancy**: Isolated document vaults, knowledge graphs, research sessions, and query histories.
+### 9. Production Engineering, Security & Observability
 - **Prompt Injection Defense**: `<untrusted_document_context>` XML boundary tags, immutable system prompts, delimiter sanitization.
 - **SSRF Guard**: Prohibits private networks (`10.0.0.0/8`, `192.168.0.0/16`, `127.0.0.1`, cloud metadata `169.254.169.254`).
-- **Caching**: Redis and in-memory LRU caching for embeddings and queries.
+- **Global Command Palette**: Instant navigation and research execution via `⌘K` / `Ctrl+K`.
+- **Theme**: High-end clean light interface with accessibility and WCAG AA contrast.
 - **Observability**: Prometheus `/metrics`, `/health`, `/readiness`, and structured logging.
 
 ---
@@ -121,23 +143,15 @@ npm run dev
 # Frontend will be live at http://localhost:3000
 ```
 
-### 2. Docker Compose Deployment
-
-```bash
-docker-compose up --build -d
-```
-Services will be accessible at:
-- Frontend UI: `http://localhost:3000`
-- Backend API Docs: `http://localhost:8000/docs`
-- Health Probe: `http://localhost:8000/health`
-- Metrics: `http://localhost:8000/metrics`
-- Neo4j Browser: `http://localhost:7474`
+### 2. Default Test Credentials
+- **Admin**: `admin` / `AdminSecure2026!`
+- **Researcher**: `researcher` / `Researcher2026!`
 
 ---
 
 ## 🧪 Testing & Validation
 
-Run the complete 84-test validation suite:
+Run the complete 97-test validation suite:
 
 ```bash
 python -m pytest backend/tests/ -v
