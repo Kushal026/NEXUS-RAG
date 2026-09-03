@@ -6,7 +6,7 @@
       "entity_type": "concept",
       "aliases": [],
       "description": null,
-      "mention_count": 11,
+      "mention_count": 13,
       "provenance_list": [
         {
           "document_id": "35071674-6efd-47a7-b235-941fcae252c3",
@@ -30,7 +30,7 @@
         "Neural Networks\n\nQuantum"
       ],
       "description": null,
-      "mention_count": 11,
+      "mention_count": 13,
       "provenance_list": [
         {
           "document_id": "35071674-6efd-47a7-b235-941fcae252c3",
@@ -150,7 +150,7 @@
       "entity_type": "dataset",
       "aliases": [],
       "description": null,
-      "mention_count": 12,
+      "mention_count": 14,
       "provenance_list": [
         {
           "document_id": "ac003c73-0c0f-4873-9455-9ab2d38a8978",
@@ -271,6 +271,26 @@
           "exact_snippet": "ches, achieving 91.5% top-1 accuracy on ImageNet-1K.\n\n## Performance Comparison\nUnder lo",
           "confidence": 0.9,
           "extracted_at": "2026-09-03T15:46:17.002424"
+        },
+        {
+          "document_id": "adf35720-35e4-4b66-8105-f991601c8c54",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "adf35720-35e4-4b66-8105-f991601c8c54_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "ches, achieving 91.5% top-1 accuracy on ImageNet-1K.\n\n## Performance Comparison\nUnder lo",
+          "confidence": 0.9,
+          "extracted_at": "2026-09-03T19:23:11.626996"
+        },
+        {
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "ches, achieving 91.5% top-1 accuracy on ImageNet-1K.\n\n## Performance Comparison\nUnder lo",
+          "confidence": 0.9,
+          "extracted_at": "2026-09-03T19:24:43.962543"
         }
       ],
       "properties": {},
@@ -282,7 +302,7 @@
       "entity_type": "technology",
       "aliases": [],
       "description": null,
-      "mention_count": 12,
+      "mention_count": 14,
       "provenance_list": [
         {
           "document_id": "ac003c73-0c0f-4873-9455-9ab2d38a8978",
@@ -403,6 +423,26 @@
           "exact_snippet": "Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving",
           "confidence": 0.92,
           "extracted_at": "2026-09-03T15:46:17.002424"
+        },
+        {
+          "document_id": "adf35720-35e4-4b66-8105-f991601c8c54",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "adf35720-35e4-4b66-8105-f991601c8c54_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving",
+          "confidence": 0.92,
+          "extracted_at": "2026-09-03T19:23:11.627995"
+        },
+        {
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving",
+          "confidence": 0.92,
+          "extracted_at": "2026-09-03T19:24:43.962543"
         }
       ],
       "properties": {},
@@ -414,7 +454,7 @@
       "entity_type": "concept",
       "aliases": [],
       "description": null,
-      "mention_count": 12,
+      "mention_count": 14,
       "provenance_list": [
         {
           "document_id": "ac003c73-0c0f-4873-9455-9ab2d38a8978",
@@ -535,6 +575,26 @@
           "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024",
           "confidence": 0.88,
           "extracted_at": "2026-09-03T15:46:17.002424"
+        },
+        {
+          "document_id": "adf35720-35e4-4b66-8105-f991601c8c54",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "adf35720-35e4-4b66-8105-f991601c8c54_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024",
+          "confidence": 0.88,
+          "extracted_at": "2026-09-03T19:23:11.627995"
+        },
+        {
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024",
+          "confidence": 0.88,
+          "extracted_at": "2026-09-03T19:24:43.962543"
         }
       ],
       "properties": {},
@@ -546,7 +606,7 @@
       "entity_type": "date",
       "aliases": [],
       "description": null,
-      "mention_count": 12,
+      "mention_count": 14,
       "provenance_list": [
         {
           "document_id": "ac003c73-0c0f-4873-9455-9ab2d38a8978",
@@ -667,6 +727,26 @@
           "exact_snippet": "nism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Tran",
           "confidence": 0.85,
           "extracted_at": "2026-09-03T15:46:17.002424"
+        },
+        {
+          "document_id": "adf35720-35e4-4b66-8105-f991601c8c54",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "adf35720-35e4-4b66-8105-f991601c8c54_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "nism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Tran",
+          "confidence": 0.85,
+          "extracted_at": "2026-09-03T19:23:11.627995"
+        },
+        {
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "nism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Tran",
+          "confidence": 0.85,
+          "extracted_at": "2026-09-03T19:24:43.962543"
         }
       ],
       "properties": {},
@@ -680,7 +760,7 @@
         "Vision Transformers\nPublished"
       ],
       "description": null,
-      "mention_count": 12,
+      "mention_count": 14,
       "provenance_list": [
         {
           "document_id": "ac003c73-0c0f-4873-9455-9ab2d38a8978",
@@ -801,6 +881,26 @@
           "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang",
           "confidence": 0.75,
           "extracted_at": "2026-09-03T15:46:17.002424"
+        },
+        {
+          "document_id": "adf35720-35e4-4b66-8105-f991601c8c54",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "adf35720-35e4-4b66-8105-f991601c8c54_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T19:23:11.627995"
+        },
+        {
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T19:24:43.962543"
         }
       ],
       "properties": {},
@@ -814,7 +914,7 @@
         "Zhang\n\nVision Transformers"
       ],
       "description": null,
-      "mention_count": 12,
+      "mention_count": 14,
       "provenance_list": [
         {
           "document_id": "ac003c73-0c0f-4873-9455-9ab2d38a8978",
@@ -935,6 +1035,26 @@
           "exact_snippet": "lished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms t",
           "confidence": 0.75,
           "extracted_at": "2026-09-03T15:46:17.002424"
+        },
+        {
+          "document_id": "adf35720-35e4-4b66-8105-f991601c8c54",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "adf35720-35e4-4b66-8105-f991601c8c54_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "lished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms t",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T19:23:11.627995"
+        },
+        {
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "lished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms t",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T19:24:43.962543"
         }
       ],
       "properties": {},
@@ -948,7 +1068,7 @@
         "Performance Comparison\nUnder"
       ],
       "description": null,
-      "mention_count": 12,
+      "mention_count": 14,
       "provenance_list": [
         {
           "document_id": "ac003c73-0c0f-4873-9455-9ab2d38a8978",
@@ -1069,6 +1189,26 @@
           "exact_snippet": "1.5% top-1 accuracy on ImageNet-1K.\n\n## Performance Comparison\nUnder low-light conditions, ViT accuracy drop",
           "confidence": 0.75,
           "extracted_at": "2026-09-03T15:46:17.002424"
+        },
+        {
+          "document_id": "adf35720-35e4-4b66-8105-f991601c8c54",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "adf35720-35e4-4b66-8105-f991601c8c54_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "1.5% top-1 accuracy on ImageNet-1K.\n\n## Performance Comparison\nUnder low-light conditions, ViT accuracy drop",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T19:23:11.627995"
+        },
+        {
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
+          "document_filename": "vision_transformers.md",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
+          "page_number": 1,
+          "section_title": "Performance Comparison",
+          "exact_snippet": "1.5% top-1 accuracy on ImageNet-1K.\n\n## Performance Comparison\nUnder low-light conditions, ViT accuracy drop",
+          "confidence": 0.75,
+          "extracted_at": "2026-09-03T19:24:43.962543"
         }
       ],
       "properties": {},
@@ -1337,264 +1477,108 @@
       "created_at": "2026-09-03T14:17:53.527729"
     },
     {
-      "id": "ec1b5637-6e39-4c1f-8f1c-184a6503a504",
-      "source_id": "f0161e7c-68d8-4cff-ba92-b6a506b11139",
+      "id": "a67b27b6-a06c-4a9f-8984-4760a58520eb",
+      "source_id": "cc034b21-458b-4b94-8fc5-17e24a49006c",
       "source_name": "self-attention",
-      "target_id": "513e488c-094c-4389-af37-b0fa7be23261",
+      "target_id": "abf9af94-bb54-4378-9298-5c987246a4bf",
       "target_name": "ImageNet",
       "relationship_type": "EVALUATED_ON",
       "description": "self-attention evaluated on ImageNet",
       "weight": 0.92,
       "provenance_list": [
         {
-          "document_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39",
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
           "document_filename": "vision_transformers.md",
-          "chunk_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39_chunk_0",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
           "page_number": 1,
           "section_title": "Performance Comparison",
           "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K.",
           "confidence": 0.92,
-          "extracted_at": "2026-09-03T15:46:17.092796"
+          "extracted_at": "2026-09-03T19:24:44.021543"
         }
       ],
       "properties": {
         "sentence": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K."
       },
-      "created_at": "2026-09-03T15:46:17.093797"
+      "created_at": "2026-09-03T19:24:44.021543"
     },
     {
-      "id": "e4ac3ef0-59f6-419e-b044-92e34a187dab",
-      "source_id": "f0161e7c-68d8-4cff-ba92-b6a506b11139",
+      "id": "166a453c-f316-4fd9-a769-b4ed685ecbcb",
+      "source_id": "cc034b21-458b-4b94-8fc5-17e24a49006c",
       "source_name": "self-attention",
-      "target_id": "08b76d8a-2f3a-40d4-91ae-da512e39d4ae",
+      "target_id": "7fdaaa5b-4101-40d5-bff2-a38da51beb42",
       "target_name": "Attention Mechanism",
       "relationship_type": "EVALUATED_ON",
       "description": "self-attention evaluated on Attention Mechanism",
       "weight": 0.92,
       "provenance_list": [
         {
-          "document_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39",
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
           "document_filename": "vision_transformers.md",
-          "chunk_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39_chunk_0",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
           "page_number": 1,
           "section_title": "Performance Comparison",
           "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K.",
           "confidence": 0.92,
-          "extracted_at": "2026-09-03T15:46:17.093797"
+          "extracted_at": "2026-09-03T19:24:44.021543"
         }
       ],
       "properties": {
         "sentence": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K."
       },
-      "created_at": "2026-09-03T15:46:17.093797"
+      "created_at": "2026-09-03T19:24:44.021543"
     },
     {
-      "id": "9b262d31-a356-458e-862b-d1a153a568ad",
-      "source_id": "08b76d8a-2f3a-40d4-91ae-da512e39d4ae",
+      "id": "9c50c47e-cd00-49ec-a958-fea7278a246b",
+      "source_id": "7fdaaa5b-4101-40d5-bff2-a38da51beb42",
       "source_name": "Attention Mechanism",
-      "target_id": "a6b6e5ed-c3fb-40b4-8a3e-66957a428bea",
+      "target_id": "dae1db33-72bb-47af-a628-be538362bcbd",
       "target_name": "2024-03-15",
       "relationship_type": "RELATED_TO",
       "description": "Attention Mechanism is mentioned alongside 2024-03-15",
       "weight": 0.65,
       "provenance_list": [
         {
-          "document_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39",
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
           "document_filename": "vision_transformers.md",
-          "chunk_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39_chunk_0",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
           "page_number": 1,
           "section_title": "Performance Comparison",
           "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K.",
           "confidence": 0.65,
-          "extracted_at": "2026-09-03T15:46:17.095796"
+          "extracted_at": "2026-09-03T19:24:44.022543"
         }
       ],
       "properties": {
         "sentence": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K."
       },
-      "created_at": "2026-09-03T15:46:17.095796"
+      "created_at": "2026-09-03T19:24:44.022543"
     },
     {
-      "id": "b359819c-e19a-4781-a74f-67032ae0a905",
-      "source_id": "a6b6e5ed-c3fb-40b4-8a3e-66957a428bea",
+      "id": "23871ca0-dafe-48e6-8c51-b308b07e6878",
+      "source_id": "dae1db33-72bb-47af-a628-be538362bcbd",
       "source_name": "2024-03-15",
-      "target_id": "f0161e7c-68d8-4cff-ba92-b6a506b11139",
+      "target_id": "cc034b21-458b-4b94-8fc5-17e24a49006c",
       "target_name": "self-attention",
       "relationship_type": "RELATED_TO",
       "description": "2024-03-15 is mentioned alongside self-attention",
       "weight": 0.65,
       "provenance_list": [
         {
-          "document_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39",
+          "document_id": "e112122d-7744-409c-910d-194782e5bd8d",
           "document_filename": "vision_transformers.md",
-          "chunk_id": "dbdf1b15-d702-4691-8bc5-4e63b981df39_chunk_0",
+          "chunk_id": "e112122d-7744-409c-910d-194782e5bd8d_chunk_0",
           "page_number": 1,
           "section_title": "Performance Comparison",
           "exact_snippet": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K.",
           "confidence": 0.65,
-          "extracted_at": "2026-09-03T15:46:17.097797"
+          "extracted_at": "2026-09-03T19:24:44.023544"
         }
       ],
       "properties": {
         "sentence": "# Attention Mechanism and Vision Transformers\nPublished: 2024-03-15\nAuthors: Vaswani and Zhang\n\nVision Transformers (ViT) apply self-attention mechanisms to image patches, achieving 91.5% top-1 accuracy on ImageNet-1K."
       },
-      "created_at": "2026-09-03T15:46:17.097797"
-    },
-    {
-      "id": "7c342053-ac0c-4e31-a954-d758b395fc08",
-      "source_id": "7b021ccf-e49d-4658-9688-9634fffc8685",
-      "source_name": "OpenAI",
-      "target_id": "f7ef0286-9788-4608-bd78-f0f99671fd46",
-      "target_name": "GPT-4",
-      "relationship_type": "RELATED_TO",
-      "description": "OpenAI is mentioned alongside GPT-4",
-      "weight": 0.65,
-      "provenance_list": [
-        {
-          "document_id": "doc-rag-01",
-          "document_filename": "models_overview.pdf",
-          "chunk_id": "c-rag-test",
-          "page_number": 2,
-          "section_title": null,
-          "exact_snippet": "OpenAI released GPT-4.",
-          "confidence": 0.65,
-          "extracted_at": "2026-09-03T15:47:31.534499"
-        }
-      ],
-      "properties": {
-        "sentence": "OpenAI released GPT-4."
-      },
-      "created_at": "2026-09-03T15:47:31.534499"
-    },
-    {
-      "id": "fa7934d3-490f-4df9-b865-24735a46d900",
-      "source_id": "f7ef0286-9788-4608-bd78-f0f99671fd46",
-      "source_name": "GPT-4",
-      "target_id": "7b021ccf-e49d-4658-9688-9634fffc8685",
-      "target_name": "OpenAI",
-      "relationship_type": "CREATED_BY",
-      "description": "GPT-4 created by OpenAI",
-      "weight": 0.85,
-      "provenance_list": [
-        {
-          "document_id": "doc-rag-01",
-          "document_filename": "models_overview.pdf",
-          "chunk_id": "c-rag-test",
-          "page_number": 2,
-          "section_title": null,
-          "exact_snippet": "OpenAI released GPT-4.",
-          "confidence": 0.85,
-          "extracted_at": "2026-09-03T15:47:31.534499"
-        }
-      ],
-      "properties": {
-        "sentence": "OpenAI released GPT-4."
-      },
-      "created_at": "2026-09-03T15:47:31.535499"
-    },
-    {
-      "id": "b2a759ba-ffd2-4f69-a4a1-d3bb20ffcb08",
-      "source_id": "be0eeafc-0d65-43a5-bded-c67534aec7a9",
-      "source_name": "Anthropic",
-      "target_id": "f7ef0286-9788-4608-bd78-f0f99671fd46",
-      "target_name": "GPT-4",
-      "relationship_type": "RELATED_TO",
-      "description": "Anthropic is mentioned alongside GPT-4",
-      "weight": 0.65,
-      "provenance_list": [
-        {
-          "document_id": "doc-rag-01",
-          "document_filename": "models_overview.pdf",
-          "chunk_id": "c-rag-test",
-          "page_number": 2,
-          "section_title": null,
-          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
-          "confidence": 0.65,
-          "extracted_at": "2026-09-03T15:47:31.535499"
-        }
-      ],
-      "properties": {
-        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
-      },
-      "created_at": "2026-09-03T15:47:31.535499"
-    },
-    {
-      "id": "6f30e535-b1b8-4fba-85bc-5bf466d92b8c",
-      "source_id": "f7ef0286-9788-4608-bd78-f0f99671fd46",
-      "source_name": "GPT-4",
-      "target_id": "be0eeafc-0d65-43a5-bded-c67534aec7a9",
-      "target_name": "Anthropic",
-      "relationship_type": "CREATED_BY",
-      "description": "GPT-4 is created/authored by Anthropic",
-      "weight": 0.95,
-      "provenance_list": [
-        {
-          "document_id": "doc-rag-01",
-          "document_filename": "models_overview.pdf",
-          "chunk_id": "c-rag-test",
-          "page_number": 2,
-          "section_title": null,
-          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
-          "confidence": 0.95,
-          "extracted_at": "2026-09-03T15:47:31.535499"
-        }
-      ],
-      "properties": {
-        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
-      },
-      "created_at": "2026-09-03T15:47:31.535499"
-    },
-    {
-      "id": "787170df-d002-4120-8441-a5983ef916f0",
-      "source_id": "21a1296e-44ce-43ab-86e1-aef97590bfe9",
-      "source_name": "Claude",
-      "target_id": "be0eeafc-0d65-43a5-bded-c67534aec7a9",
-      "target_name": "Anthropic",
-      "relationship_type": "CREATED_BY",
-      "description": "Claude is created/authored by Anthropic",
-      "weight": 0.95,
-      "provenance_list": [
-        {
-          "document_id": "doc-rag-01",
-          "document_filename": "models_overview.pdf",
-          "chunk_id": "c-rag-test",
-          "page_number": 2,
-          "section_title": null,
-          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
-          "confidence": 0.95,
-          "extracted_at": "2026-09-03T15:47:31.536499"
-        }
-      ],
-      "properties": {
-        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
-      },
-      "created_at": "2026-09-03T15:47:31.536499"
-    },
-    {
-      "id": "61974a84-d212-4355-928b-d2cb1875f32e",
-      "source_id": "21a1296e-44ce-43ab-86e1-aef97590bfe9",
-      "source_name": "Claude",
-      "target_id": "f7ef0286-9788-4608-bd78-f0f99671fd46",
-      "target_name": "GPT-4",
-      "relationship_type": "RELATED_TO",
-      "description": "Claude is mentioned alongside GPT-4",
-      "weight": 0.65,
-      "provenance_list": [
-        {
-          "document_id": "doc-rag-01",
-          "document_filename": "models_overview.pdf",
-          "chunk_id": "c-rag-test",
-          "page_number": 2,
-          "section_title": null,
-          "exact_snippet": "Claude is an alternative model developed by Anthropic that competes with GPT-4.",
-          "confidence": 0.65,
-          "extracted_at": "2026-09-03T15:47:31.536499"
-        }
-      ],
-      "properties": {
-        "sentence": "Claude is an alternative model developed by Anthropic that competes with GPT-4."
-      },
-      "created_at": "2026-09-03T15:47:31.536499"
+      "created_at": "2026-09-03T19:24:44.023544"
     }
   ]
 }
