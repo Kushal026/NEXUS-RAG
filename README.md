@@ -7,9 +7,10 @@
 [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?logo=docker)](https://docker.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**NEXUS** is an enterprise-grade, state-of-the-art **Evidence Intelligence & Neural Retrieval Platform**. It moves beyond naive chunk-level Retrieval-Augmented Generation by unifying **Hybrid Sparse-Dense Search (MiniLM + BM25 RRF)**, **Cross-Encoder Reranking**, **Neo4j Knowledge Graph Traversal**, **Temporal Filtering & Conflict Resolution**, **NLI Contradiction Analysis**, **Iterative Self-Correcting Recovery**, **Multimodal Document Understanding (PDF, Tables, Charts, Images/OCR, Code)**, and an **Autonomous 9-Section Research Agent**.
+**NEXUS** is an **advanced evidence-backed RAG and AI research platform**. It moves beyond naive chunk-level Retrieval-Augmented Generation by unifying **Hybrid Sparse-Dense Search (MiniLM + BM25 RRF)**, **Cross-Encoder Reranking**, **Neo4j Knowledge Graph Traversal**, **Temporal Filtering & Conflict Resolution**, **NLI Contradiction Analysis**, **Iterative Self-Correcting Recovery**, **Multimodal Document Understanding (PDF, Tables, Charts, Images/OCR, Code)**, and an **Autonomous 9-Section Research Agent**.
 
 > **Tagline**: *Retrieve, connect, verify, and reason over complex information with evidence-backed AI.*
+
 
 ---
 

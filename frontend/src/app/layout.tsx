@@ -4,16 +4,17 @@ import { AuthProvider } from "../context/AuthContext";
 
 export const metadata: Metadata = {
   title: "NEXUS — Evidence Intelligence for AI",
-  description: "An evidence-backed AI research platform for retrieving, connecting, verifying, and reasoning over complex information.",
+  description: "Advanced evidence-backed RAG and AI research platform for retrieving, connecting, verifying, and reasoning over complex information.",
   keywords: ["AI Research", "RAG", "Evidence Intelligence", "Knowledge Graph", "Neural Search", "Contradiction Detection"],
   authors: [{ name: "NEXUS Team" }],
   openGraph: {
     title: "NEXUS — Evidence Intelligence for AI",
-    description: "An evidence-backed AI research platform for retrieving, connecting, verifying, and reasoning over complex information.",
+    description: "Advanced evidence-backed RAG and AI research platform for retrieving, connecting, verifying, and reasoning over complex information.",
     siteName: "NEXUS",
     type: "website",
   },
 };
+
 
 export default function RootLayout({
   children,
